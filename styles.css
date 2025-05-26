@@ -7,7 +7,7 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: #f9f9f9;
+  background-color: #dbeafe ;
   color: #2b2b2b;
   line-height: 1.6;
 }
@@ -106,11 +106,35 @@ h3 {
   color: #374151;
 }
 
+
 ul {
   margin-top: 1rem;
   padding-left: 1.2rem;
 }
 
-ul li {
-  margin-bottom: 1rem;
+ul.experience {
+  margin-top: 0.8rem;
+  padding-left: 1.2rem;
+  list-style-type: disc;
+}
+
+.contact-links {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: #374151;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contact-links a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.contact-links a:hover {
+  color: #2563eb; /* blue on hover */
+  text-decoration: underline;
 }
