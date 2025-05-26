@@ -41,6 +41,7 @@ a:hover {
   justify-content: flex-start;
   align-items: flex-start;
   transform: translateY(40px) translateX(10px); /* adjust X and Y */
+  border-right: 0.5px;
 }
 
 .sidebar h1 {
