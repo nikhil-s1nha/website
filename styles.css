@@ -32,7 +32,7 @@ a:hover {
   width: 250px;
   background: #fff;
   padding: 2rem 1.5rem;
-  border-right: 1px solid #e0e0e0;
+  border-right: none;
   position: sticky;
   top: 0;
   height: 100vh;
@@ -143,4 +143,10 @@ ul.experience {
 
 .contact-links a:hover {
   color: #2563eb;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
 }
