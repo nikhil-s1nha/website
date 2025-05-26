@@ -32,14 +32,15 @@ a:hover {
   width: 250px;
   background: #bfcfd6;
   padding: 2rem 1.5rem;
-  border-right: none;
   position: sticky;
   top: 0;
   height: 100vh;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+  transform: translateY(40px) translateX(10px); /* adjust X and Y */
 }
 
 .sidebar h1 {
