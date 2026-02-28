@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community — Nikhil Sinha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Neue Haas Grotesk';
+    src: local('Neue Haas Grotesk Display Pro'), local('NeueHaasDisplay-Roman'), local('Helvetica Neue'), local('Helvetica');
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: 'Neue Haas Grotesk';
+    src: local('Neue Haas Grotesk Display Pro Light'), local('NeueHaasDisplay-Light'), local('Helvetica Neue Light');
+    font-weight: 300;
+  }
+  @font-face {
+    font-family: 'Neue Haas Grotesk';
+    src: local('Neue Haas Grotesk Display Pro Medium'), local('NeueHaasDisplay-Medium'), local('Helvetica Neue Medium');
+    font-weight: 500;
+  }
+  @font-face {
+    font-family: 'Neue Haas Grotesk';
+    src: local('Neue Haas Grotesk Display Pro Bold'), local('NeueHaasDisplay-Bold'), local('Helvetica Neue Bold');
+    font-weight: 700;
+  }
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  :root {
+    --bg: #D9D9D9;
+    --text: #333333;
+    --text-light: #555555;
+    --text-faint: #888888;
+    --card-bg: #CECECE;
+  }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Neue Haas Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 2.5rem 5rem;
+  }
+  /* ── Header ── */
+  .page-header {
+    margin-bottom: 3rem;
+  }
+  .back-link {
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-faint);
+    transition: color 0.3s ease;
+  }
+  .back-link:hover {
+    color: var(--text);
+  }
+  .page-title {
+    margin-top: 1.5rem;
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .page-intro {
+    margin-top: 0.8rem;
+    font-size: 0.92rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--text-light);
+    max-width: 680px;
+  }
+  /* ── Card Layout ── */
+  .cards-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .cards-wrapper.faded .community-card:not(.active) {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.95);
+  }
+  .cards-wrapper.faded .mid-row-quote {
+    opacity: 0;
+  }
+  .card-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+  }
+  .mid-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 1.2rem;
+    align-items: center;
+  }
+  .mid-row-quote {
+    text-align: center;
+    padding: 0 1.5rem;
+    font-size: 0.82rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--text-faint);
+    font-style: italic;
+    max-width: 180px;
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.35s forwards;
+    transition: opacity 0.5s ease;
+  }
+  .mid-row-quote .quote-author {
+    display: block;
+    margin-top: 0.3rem;
+    font-style: normal;
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #a0a0a0;
+  }
+  /* ── Community Card ── */
+  .community-card {
+    background: var(--card-bg);
+    cursor: pointer;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, opacity 0.5s ease;
+    overflow: hidden;
+  }
+  .community-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+  .card-title {
+    padding: 0.7rem 1rem;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .card-image {
+    width: 100%;
+    height: 160px;
+    background: var(--card-bg);
+    overflow: hidden;
+  }
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  /* ── Expanded View ── */
+  .expanded-view {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .expanded-view.visible {
+    display: block;
+    opacity: 1;
+  }
+  .expanded-image {
+    width: 100%;
+    height: 320px;
+    background: #C2C2C2;
+    overflow: hidden;
+  }
+  .expanded-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .expanded-header {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .expanded-title {
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .expanded-close {
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-faint);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    background: none;
+    border: none;
+    font-family: inherit;
+  }
+  .expanded-close:hover {
+    color: var(--text);
+  }
+  .expanded-description {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--text-light);
+    min-height: 4rem;
+  }
+  .typing-cursor {
+    display: inline-block;
+    width: 1px;
+    height: 1em;
+    background: var(--text-light);
+    margin-left: 2px;
+    animation: blink 0.7s step-end infinite;
+    vertical-align: text-bottom;
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+  /* ── Animations ── */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .community-card {
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+  }
+  .card-row:first-of-type .community-card:nth-child(1) { animation-delay: 0.1s; }
+  .card-row:first-of-type .community-card:nth-child(2) { animation-delay: 0.15s; }
+  .mid-row .community-card:nth-child(1) { animation-delay: 0.25s; }
+  .mid-row .community-card:nth-child(3) { animation-delay: 0.3s; }
+  .card-row:last-of-type .community-card:nth-child(1) { animation-delay: 0.45s; }
+  .card-row:last-of-type .community-card:nth-child(2) { animation-delay: 0.5s; }
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .page { padding: 2rem 1.5rem 4rem; }
+    .card-row {
+      grid-template-columns: 1fr 1fr;
+    }
+    .mid-row {
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+    }
+    .mid-row-quote {
+      max-width: 100%;
+      padding: 0.5rem 0;
+    }
+    .card-image { height: 130px; }
+    .expanded-image { height: 220px; }
+  }
+  @media (max-width: 480px) {
+    .card-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <header class="page-header">
+      <a href="index.html" class="back-link">&larr; Back</a>
+      <h1 class="page-title">Community</h1>
+      <p class="page-intro">The person I am today is the product of the communities I've been in — the people who challenge me, grow with me, and push me to build solutions for others. Here are some of them:</p>
+    </header>
+
+    <!-- ── Expanded View (hidden by default) ── -->
+    <div class="expanded-view" id="expandedView">
+      <div class="expanded-image">
+        <img id="expandedImg" src="" alt="">
+      </div>
+      <div class="expanded-header">
+        <h2 class="expanded-title" id="expandedTitle"></h2>
+        <button class="expanded-close" id="closeBtn">&larr; Back to all</button>
+      </div>
+      <div class="expanded-description" id="expandedDesc"></div>
+    </div>
+
+    <!-- ── Cards ── -->
+    <div class="cards-wrapper" id="cardGrid">
+      <!-- Row 1: 2 cards -->
+      <div class="card-row">
+        <div class="community-card" data-title="Rockets" data-description="Description for rockets community goes here. Talk about what this community means to you, what you've built together, and the experiences that shaped you.">
+          <div class="card-title">Rockets</div>
+          <div class="card-image">
+            <img src="images/community/rockets.jpg" alt="Rockets">
+          </div>
+        </div>
+
+        <div class="community-card" data-title="Robots" data-description="Description for robots community goes here. Talk about what this community means to you, what you've built together, and the experiences that shaped you.">
+          <div class="card-title">Robots</div>
+          <div class="card-image">
+            <img src="images/community/robots.jpg" alt="Robots">
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: card + quote + card -->
+      <div class="mid-row">
+        <div class="community-card" data-title="Basketball" data-description="Description for basketball community goes here. Talk about what this community means to you, what you've built together, and the experiences that shaped you.">
+          <div class="card-title">Basketball</div>
+          <div class="card-image">
+            <img src="images/community/bball.jpg" alt="Basketball">
+          </div>
+        </div>
+
+        <p class="mid-row-quote">
+          Always smile, or better, surround yourself with enough special friends to remind you to.
+          <span class="quote-author">Me :)</span>
+        </p>
+
+        <div class="community-card" data-title="Dentists" data-description="Description for dentists community goes here. Talk about what this community means to you, what you've built together, and the experiences that shaped you.">
+          <div class="card-title">Dentists</div>
+          <div class="card-image">
+            <img src="images/community/dentists.jpg" alt="Dentists">
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3: 2 cards -->
+      <div class="card-row">
+        <div class="community-card" data-title="Spamdemwood" data-description="Description for Spamdemwood community goes here. Talk about what this community means to you, what you've built together, and the experiences that shaped you.">
+          <div class="card-title">Spamdemwood</div>
+          <div class="card-image">
+            <img src="images/community/spamdemwood.jpg" alt="Spamdemwood">
+          </div>
+        </div>
+
+        <div class="community-card" data-title="Teaching" data-description="Description for teaching community goes here. Talk about what this community means to you, what you've built together, and the experiences that shaped you.">
+          <div class="card-title">Teaching</div>
+          <div class="card-image">
+            <img src="images/community/teaching.jpg" alt="Teaching">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const grid = document.getElementById('cardGrid');
+    const cards = document.querySelectorAll('.community-card');
+    const expandedView = document.getElementById('expandedView');
+    const expandedImg = document.getElementById('expandedImg');
+    const expandedTitle = document.getElementById('expandedTitle');
+    const expandedDesc = document.getElementById('expandedDesc');
+    const closeBtn = document.getElementById('closeBtn');
+    let typingInterval = null;
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const title = card.dataset.title;
+        const description = card.dataset.description;
+        const imgSrc = card.querySelector('.card-image img').src;
+
+        // Set up expanded view
+        expandedImg.src = imgSrc;
+        expandedTitle.textContent = title;
+        expandedDesc.innerHTML = '';
+
+        // Fade out grid
+        grid.classList.add('faded');
+        card.classList.add('active');
+
+        setTimeout(() => {
+          grid.style.display = 'none';
+          expandedView.style.display = 'block';
+          // Trigger reflow for transition
+          expandedView.offsetHeight;
+          expandedView.classList.add('visible');
+
+          // Scroll to top
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+
+          // Start typing effect
+          typeText(description);
+        }, 500);
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      // Stop typing
+      if (typingInterval) clearInterval(typingInterval);
+
+      // Fade out expanded view
+      expandedView.classList.remove('visible');
+
+      setTimeout(() => {
+        expandedView.style.display = 'none';
+        grid.style.display = 'flex';
+        // Trigger reflow
+        grid.offsetHeight;
+        grid.classList.remove('faded');
+        cards.forEach(c => c.classList.remove('active'));
+      }, 400);
+    });
+
+    function typeText(text) {
+      if (typingInterval) clearInterval(typingInterval);
+      let i = 0;
+      expandedDesc.innerHTML = '<span class="typing-cursor"></span>';
+
+      typingInterval = setInterval(() => {
+        if (i < text.length) {
+          // Insert character before cursor
+          const cursor = expandedDesc.querySelector('.typing-cursor');
+          cursor.insertAdjacentText('beforebegin', text[i]);
+          i++;
+        } else {
+          clearInterval(typingInterval);
+          // Remove cursor after a brief pause
+          setTimeout(() => {
+            const cursor = expandedDesc.querySelector('.typing-cursor');
+            if (cursor) cursor.remove();
+          }, 1500);
+        }
+      }, 25);
+    }
+  </script>
+</body>
+</html>
