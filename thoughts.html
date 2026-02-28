@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thoughts — Nikhil Sinha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Neue Haas Grotesk';
+    src: local('Neue Haas Grotesk Display Pro'), local('NeueHaasDisplay-Roman'), local('Helvetica Neue'), local('Helvetica');
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: 'Neue Haas Grotesk';
+    src: local('Neue Haas Grotesk Display Pro Light'), local('NeueHaasDisplay-Light'), local('Helvetica Neue Light');
+    font-weight: 300;
+  }
+  @font-face {
+    font-family: 'Neue Haas Grotesk';
+    src: local('Neue Haas Grotesk Display Pro Medium'), local('NeueHaasDisplay-Medium'), local('Helvetica Neue Medium');
+    font-weight: 500;
+  }
+  @font-face {
+    font-family: 'Neue Haas Grotesk';
+    src: local('Neue Haas Grotesk Display Pro Bold'), local('NeueHaasDisplay-Bold'), local('Helvetica Neue Bold');
+    font-weight: 700;
+  }
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  :root {
+    --bg: #D9D9D9;
+    --text: #333333;
+    --text-light: #555555;
+    --text-faint: #888888;
+  }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Neue Haas Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 2.5rem 5rem;
+  }
+  /* ── Header ── */
+  .page-header {
+    margin-bottom: 3rem;
+  }
+  .back-link {
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-faint);
+    transition: color 0.3s ease;
+  }
+  .back-link:hover {
+    color: var(--text);
+  }
+  .page-title-row {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .page-title {
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .medium-link {
+    color: var(--text-faint);
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+  }
+  .medium-link:hover {
+    color: var(--text);
+  }
+  /* ── Post List ── */
+  .post-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .post-item {
+    padding: 0.9rem 0;
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 0.5s ease forwards;
+  }
+  .post-item:hover {
+    opacity: 0.6;
+  }
+  .post-title {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  .post-date {
+    margin-top: 0.4rem;
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--text-faint);
+  }
+  /* ── Animations ── */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .post-item:nth-child(1) { animation-delay: 0.1s; }
+  .post-item:nth-child(2) { animation-delay: 0.15s; }
+  .post-item:nth-child(3) { animation-delay: 0.2s; }
+  .post-item:nth-child(4) { animation-delay: 0.25s; }
+  .post-item:nth-child(5) { animation-delay: 0.3s; }
+  .post-item:nth-child(6) { animation-delay: 0.35s; }
+  .post-item:nth-child(7) { animation-delay: 0.4s; }
+  .post-item:nth-child(8) { animation-delay: 0.45s; }
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .page { padding: 2rem 1.5rem 4rem; }
+    .post-item { padding: 1.5rem 0; }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <header class="page-header">
+      <a href="index.html" class="back-link">&larr; Back</a>
+      <div class="page-title-row">
+        <h1 class="page-title">Thoughts</h1>
+        <a href="https://medium.com/@nikhils1nha" target="_blank" class="medium-link" aria-label="Medium">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+        </a>
+      </div>
+    </header>
+
+    <div class="post-list">
+      <a href="https://medium.com/@nikhils1nha/reducing-dental-emergencies-with-identify-8349220b3a9c" target="_blank" class="post-item">
+        <h2 class="post-title">Reducing Dental Emergencies with iDENTify</h2>
+        <p class="post-date">Feb 2, 2026</p>
+      </a>
+
+      <a href="https://medium.com/@nikhils1nha/what-does-religion-mean-82d9f19d3bb9" target="_blank" class="post-item">
+        <h2 class="post-title">What Does Religion Mean?</h2>
+        <p class="post-date">Jan 25, 2026</p>
+      </a>
+
+      <a href="https://medium.com/@nikhils1nha/tire-ea7fc88b863c" target="_blank" class="post-item">
+        <h2 class="post-title">Tire</h2>
+        <p class="post-date">Nov 22, 2025</p>
+      </a>
+
+      <a href="https://medium.com/@nikhils1nha/opportunity-846fdbe2b17b" target="_blank" class="post-item">
+        <h2 class="post-title">Opportunity</h2>
+        <p class="post-date">Nov 9, 2025</p>
+      </a>
+
+      <a href="https://medium.com/@nikhils1nha/hunger-c02d0721eb0d" target="_blank" class="post-item">
+        <h2 class="post-title">hunger</h2>
+        <p class="post-date">Oct 10, 2025</p>
+      </a>
+
+      <a href="https://medium.com/@nikhils1nha/communication-bacd069a6a75" target="_blank" class="post-item">
+        <h2 class="post-title">Communication</h2>
+        <p class="post-date">Aug 14, 2025</p>
+      </a>
+
+      <a href="https://medium.com/@nikhils1nha/emotionless-in-the-face-of-death-003f4dd920b3" target="_blank" class="post-item">
+        <h2 class="post-title">Emotionless in the Face of Death</h2>
+        <p class="post-date">Aug 10, 2025</p>
+      </a>
+
+      <a href="https://medium.com/@nikhils1nha/the-state-of-nature-0626477024d1" target="_blank" class="post-item">
+        <h2 class="post-title">The State of Nature</h2>
+        <p class="post-date">Aug 8, 2025</p>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
