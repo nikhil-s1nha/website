@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bookshelf — Nikhil Sinha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @font-face {
+    font-family: 'Neue Haas Grotesk';
+    src: local('Neue Haas Grotesk Display Pro'), local('NeueHaasDisplay-Roman'), local('Helvetica Neue'), local('Helvetica');
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: 'Neue Haas Grotesk';
+    src: local('Neue Haas Grotesk Display Pro Light'), local('NeueHaasDisplay-Light'), local('Helvetica Neue Light');
+    font-weight: 300;
+  }
+  @font-face {
+    font-family: 'Neue Haas Grotesk';
+    src: local('Neue Haas Grotesk Display Pro Medium'), local('NeueHaasDisplay-Medium'), local('Helvetica Neue Medium');
+    font-weight: 500;
+  }
+  @font-face {
+    font-family: 'Neue Haas Grotesk';
+    src: local('Neue Haas Grotesk Display Pro Bold'), local('NeueHaasDisplay-Bold'), local('Helvetica Neue Bold');
+    font-weight: 700;
+  }
+  *, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  :root {
+    --bg: #D9D9D9;
+    --text: #333333;
+    --text-light: #555555;
+    --text-faint: #888888;
+  }
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Neue Haas Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 2.5rem 5rem;
+  }
+  /* ── Header ── */
+  .page-header {
+    margin-bottom: 3rem;
+  }
+  .back-link {
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-faint);
+    transition: color 0.3s ease;
+  }
+  .back-link:hover {
+    color: var(--text);
+  }
+  .page-title {
+    margin-top: 1.5rem;
+    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  /* ── Sections ── */
+  .section-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 0.8rem;
+  }
+  .current-book {
+    margin-bottom: 3rem;
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.1s forwards;
+  }
+  .book-title {
+    font-size: 1.15rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .book-author {
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--text-faint);
+    margin-top: 0.15rem;
+  }
+  .past-books {
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.25s forwards;
+  }
+  .book-item {
+    padding: 0.6rem 0;
+  }
+  .book-item .book-title {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+  /* ── Animations ── */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .page { padding: 2rem 1.5rem 4rem; }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <header class="page-header">
+      <a href="index.html" class="back-link">&larr; Back</a>
+      <h1 class="page-title">Bookshelf</h1>
+    </header>
+
+    <div class="current-book">
+      <p class="section-label">Currently reading</p>
+      <p class="book-title">The Myth of Sisyphus</p>
+      <p class="book-author">Albert Camus</p>
+    </div>
+
+    <div class="past-books">
+      <p class="section-label">Past books I've enjoyed</p>
+
+      <div class="book-item">
+        <p class="book-title">No Rules Rules: Netflix and the Culture of Reinvention</p>
+        <p class="book-author">Erin Meyer, Reed Hastings</p>
+      </div>
+
+      <div class="book-item">
+        <p class="book-title">Surely You're Joking, Mr. Feynman!</p>
+        <p class="book-author">Richard Feynman</p>
+      </div>
+
+      <div class="book-item">
+        <p class="book-title">The Power of Habit</p>
+        <p class="book-author">Charles Duhigg</p>
+      </div>
+
+      <div class="book-item">
+        <p class="book-title">Problems from Philosophy</p>
+        <p class="book-author">James Rachels, Stuart Rachels</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
