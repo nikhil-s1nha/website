@@ -51,28 +51,30 @@
     margin: 0 auto;
     padding: 3.5rem 2.5rem 5rem;
   }
-  /* ── Image Rectangle ── */
-  .image-box {
+  /* ── Photo Grid ── */
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
     width: 100%;
     height: 280px;
-    background: #C2C2C2;
-    overflow: hidden;
+  }
+  .photo-cell {
     position: relative;
-  }
-  .image-track {
-    display: flex;
-    height: 100%;
-    transition: transform 0.8s ease-in-out;
-  }
-  .image-slide {
-    min-width: 100%;
-    height: 100%;
+    overflow: hidden;
     background: #C2C2C2;
   }
-  .image-slide img {
+  .photo-cell img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+  .photo-cell img.active {
+    opacity: 1;
   }
   /* ── Name ── */
   .name {
@@ -215,7 +217,7 @@
   /* ── Responsive ── */
   @media (max-width: 768px) {
     .page { padding: 2rem 1.5rem 4rem; }
-    .image-box { height: 200px; }
+    .photo-grid { height: 180px; }
     .middle {
       flex-direction: column;
       align-items: center;
@@ -242,14 +244,11 @@
 </head>
 <body>
   <div class="page">
-    <!-- ── Image Rectangle ── -->
-    <div class="image-box">
-      <div class="image-track">
-        <div class="image-slide"><img src="images/slide1.jpg" alt=""></div>
-        <div class="image-slide"><img src="images/slide2.jpg" alt=""></div>
-        <div class="image-slide"><img src="images/slide3.jpg" alt=""></div>
-        <div class="image-slide"><img src="images/slide4.jpg" alt=""></div>
-      </div>
+    <!-- ── Photo Grid ── -->
+    <div class="photo-grid">
+      <div class="photo-cell" id="cell-0"></div>
+      <div class="photo-cell" id="cell-1"></div>
+      <div class="photo-cell" id="cell-2"></div>
     </div>
     <!-- ── Name + Tagline ── -->
     <h1 class="name">Nikhil Sinha</h1>
@@ -298,13 +297,79 @@
     </div>
   </div>
   <script>
-    const track = document.querySelector('.image-track');
-    const slides = track.querySelectorAll('.image-slide');
-    let current = 0;
+    // ── Photo Grid Cycling ──
+    // Add your image paths here:
+    // Each photo can have an optional 'pos' to control cropping focus
+    // pos uses CSS object-position values: 'center', 'top', 'bottom', 'left', 'right'
+    // or combos like 'center top', '30% 20%', etc.
+    const photos = [
+      { src: 'images/me/1.jpg',    pos: 'center' },
+      { src: 'images/me/2.jpeg',    pos: 'center top' },
+      { src: 'images/me/3.jpg',    pos: 'center' },
+      { src: 'images/me/4.JPEG',   pos: 'center' },
+      { src: 'images/me/5.jpg',    pos: 'center' },
+      { src: 'images/me/6.jpg',    pos: 'center 10%', scale: 1.15 },
+      { src: 'images/me/7.jpg',    pos: '70% center' },
+      { src: 'images/me/8.jpg',    pos: 'center 45%' },
+      { src: 'images/me/9.jpg',    pos: 'center' },
+      { src: 'images/me/10.jpg',   pos: 'center top' },
+      { src: 'images/me/11.jpg',   pos: 'center' },
+    ];
+
+    const cells = document.querySelectorAll('.photo-cell');
+    // Track which photo index is currently shown in each cell
+    const cellState = [0, 1, 2];
+    let pool = [...Array(photos.length).keys()]; // all indices
+
+    // Initialize: load first 3 photos
+    cells.forEach((cell, i) => {
+      const img = document.createElement('img');
+      img.src = photos[i].src;
+      img.alt = '';
+      img.style.objectPosition = photos[i].pos || 'center';
+      if (photos[i].scale) img.style.transform = `scale(${photos[i].scale})`;
+      img.classList.add('active');
+      cell.appendChild(img);
+    });
+
+    // Every 2.5s, pick a random cell and swap its image to a new one
     setInterval(() => {
-      current = (current + 1) % slides.length;
-      track.style.transform = `translateX(-${current * 100}%)`;
-    }, 4000);
+      if (photos.length <= 3) return;
+
+      // Pick a random cell to swap
+      const cellIdx = Math.floor(Math.random() * 3);
+      const cell = cells[cellIdx];
+      const currentImg = cell.querySelector('img.active');
+
+      // Pick a random photo not currently shown in any cell
+      const showing = new Set(cellState);
+      const available = pool.filter(i => !showing.has(i));
+      if (available.length === 0) return;
+      const nextIdx = available[Math.floor(Math.random() * available.length)];
+
+      // Create new image, fade it in
+      const newImg = document.createElement('img');
+      newImg.src = photos[nextIdx].src;
+      newImg.alt = '';
+      newImg.style.objectPosition = photos[nextIdx].pos || 'center';
+      if (photos[nextIdx].scale) newImg.style.transform = `scale(${photos[nextIdx].scale})`;
+      cell.appendChild(newImg);
+
+      // Trigger reflow then fade
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          newImg.classList.add('active');
+          if (currentImg) currentImg.classList.remove('active');
+        });
+      });
+
+      // Clean up old image after transition
+      setTimeout(() => {
+        if (currentImg) currentImg.remove();
+      }, 900);
+
+      cellState[cellIdx] = nextIdx;
+    }, 1500);
   </script>
 </body>
 </html>
