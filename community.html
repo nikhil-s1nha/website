@@ -51,10 +51,19 @@
     max-width: 900px;
     margin: 0 auto;
     padding: 3rem 2.5rem 5rem;
+    position: relative;
   }
   /* ── Header ── */
   .page-header {
     margin-bottom: 3rem;
+    transition: opacity 0.35s ease;
+  }
+  .page-header.hiding {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .page-header.hidden {
+    display: none;
   }
   .back-link {
     font-size: 0.8rem;
@@ -88,14 +97,14 @@
     display: flex;
     flex-direction: column;
     gap: 1.2rem;
+    transition: opacity 0.45s ease;
   }
-  .cards-wrapper.faded .community-card:not(.active) {
+  .cards-wrapper.hiding {
     opacity: 0;
     pointer-events: none;
-    transform: scale(0.95);
   }
-  .cards-wrapper.faded .mid-row-quote {
-    opacity: 0;
+  .cards-wrapper.hidden {
+    display: none;
   }
   .card-row {
     display: grid;
@@ -161,62 +170,113 @@
     height: 100%;
     object-fit: cover;
   }
-  /* ── Expanded View ── */
-  .expanded-view {
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease;
+  /* ── Ghost elements (animate from card to expanded) ── */
+  .ghost {
+    position: fixed;
+    z-index: 300;
+    transition: top 0.5s cubic-bezier(0.4,0,0.2,1),
+                left 0.5s cubic-bezier(0.4,0,0.2,1),
+                width 0.5s cubic-bezier(0.4,0,0.2,1),
+                height 0.5s cubic-bezier(0.4,0,0.2,1),
+                font-size 0.5s cubic-bezier(0.4,0,0.2,1),
+                padding 0.5s cubic-bezier(0.4,0,0.2,1),
+                opacity 0.45s ease;
   }
-  .expanded-view.visible {
-    display: block;
-    opacity: 1;
-  }
-  .expanded-image {
-    width: 100%;
-    height: 320px;
-    background: #C2C2C2;
+  .ghost-image {
+    background: var(--card-bg);
     overflow: hidden;
   }
-  .expanded-image img {
+  .ghost-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-  .expanded-header {
-    margin-top: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  .ghost-title {
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: transparent;
   }
-  .expanded-title {
+  /* ── Expanded view (in-flow, allows page scroll) ── */
+  .expanded-view {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  .expanded-view.visible {
+    opacity: 1;
+  }
+  .expanded-view-image {
+    width: 100%;
+    height: 200px;
+    background: var(--card-bg);
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+  }
+  .expanded-view-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .expanded-view-title {
     font-size: 1.3rem;
     font-weight: 500;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
+    margin-bottom: 1rem;
   }
   .expanded-close {
     font-size: 0.78rem;
     font-weight: 400;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    text-decoration: none;
     color: var(--text-faint);
     cursor: pointer;
     transition: color 0.3s ease;
     background: none;
     border: none;
     font-family: inherit;
+    display: block;
+    margin-bottom: 1rem;
   }
   .expanded-close:hover {
     color: var(--text);
   }
   .expanded-description {
-    margin-top: 1rem;
     font-size: 0.9rem;
     font-weight: 300;
     line-height: 1.75;
     color: var(--text-light);
-    min-height: 4rem;
+  }
+  .expanded-description a {
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 0.2s ease;
+  }
+  .expanded-description a:hover {
+    color: var(--text-faint);
+  }
+  .skip-btn {
+    display: none;
+    margin-top: 0.75rem;
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: inherit;
+    padding: 0;
+    transition: color 0.2s ease;
+  }
+  .skip-btn.visible {
+    display: inline-block;
+  }
+  .skip-btn:hover {
+    color: var(--text);
   }
   .typing-cursor {
     display: inline-block;
@@ -260,7 +320,6 @@
       padding: 0.5rem 0;
     }
     .card-image { height: 130px; }
-    .expanded-image { height: 220px; }
   }
   @media (max-width: 480px) {
     .card-row {
@@ -271,36 +330,33 @@
 </head>
 <body>
   <div class="page">
+    <!-- ── Expanded view (in-flow so page can scroll) ── -->
+    <div class="expanded-view" id="expandedView">
+      <div class="expanded-view-image" id="expandedViewImage"></div>
+      <div class="expanded-view-title" id="expandedViewTitle"></div>
+      <button class="expanded-close" id="closeBtn">&larr; Back to all</button>
+      <div class="expanded-description" id="expandedDesc"></div>
+      <button class="skip-btn" id="skipBtn">Skip &rarr;</button>
+    </div>
+
     <header class="page-header">
       <a href="index.html" class="back-link">&larr; Back</a>
       <h1 class="page-title">Community</h1>
       <p class="page-intro">The person I am today is the product of the communities I've been in — the people who challenge me, grow with me, and push me to build solutions for others. Here are some of them:</p>
     </header>
 
-    <!-- ── Expanded View (hidden by default) ── -->
-    <div class="expanded-view" id="expandedView">
-      <div class="expanded-image">
-        <img id="expandedImg" src="" alt="">
-      </div>
-      <div class="expanded-header">
-        <h2 class="expanded-title" id="expandedTitle"></h2>
-        <button class="expanded-close" id="closeBtn">&larr; Back to all</button>
-      </div>
-      <div class="expanded-description" id="expandedDesc"></div>
-    </div>
-
     <!-- ── Cards ── -->
     <div class="cards-wrapper" id="cardGrid">
       <!-- Row 1: 2 cards -->
       <div class="card-row">
-        <div class="community-card" data-title="Rockets" data-description="Description for rockets community goes here. Talk about what this community means to you, what you've built together, and the experiences that shaped you.">
+        <div class="community-card" data-title="Rockets" data-description="Freedom. That one word embodies why I founded Space Pickles. More than an eagerness to replicate the insane capabilities of SpaceX's reusable rockets, I started Space Pickles to create a community where the freedom to pursue one's curiosity became the culture. And since the team's beginning 2 years ago, where we've grown from 3 to 30 people, I'm proud to say this culture exists. Building 3D-printed rockets, custom flight computers, and nonlinear optimization for airbrakes are all novel ideas we pursued without hesitation because we wanted to. That's it. And while this ambition often leads to hundreds of failures, it's a sense of togetherness that justifies our gamble. That feeling when we succeed together, in our own way, beats anything. But more than rockets, this culture has changed who I am. As my team has all merged our visions of what we want this team to be and what freedom means, our culture is a melting pot of perspectives from which I've understood how to lead. How to help others grow. Watching the teammates around me find themselves in our community is everything I could have wanted from a team, and pushes me to cultivate this freedom in more communities for everyone, everywhere.">
           <div class="card-title">Rockets</div>
           <div class="card-image">
             <img src="images/community/rockets.jpg" alt="Rockets">
           </div>
         </div>
 
-        <div class="community-card" data-title="Robots" data-description="Description for robots community goes here. Talk about what this community means to you, what you've built together, and the experiences that shaped you.">
+        <div class="community-card" data-title="Robots" data-description="For years I debated whether I loved robotics for itself or the community. Despite joining [[9114 Rotationaries|https://www.frc9114rotationaries.org/]] to fill up my resume, spending my evenings in that garage soon became something I looked forward to doing. Surrounded by passionate, driven individuals I wanted to learn with them, compete with them, struggle with them, and ultimately win with them. My freshman and sophomore year, this motivation pushed me to learn everything about vision and control theory, putting in 60 hour weeks and sleepless nights. While it was tiring to shoulder the burden of the entire software team (story for another time), it felt good as each one of my breakthroughs put a smile on the face of my teammates. Yet even when I failed, those smiles would still be there, removing the toxicity from failing and encouraging me to persevere. While unfortunately we didn't qualify for the world championships, the experience taught me something important about failure. When I look back on that season, I don't remember falling short from qualifying. Instead I remember building our robot the night before the competition in a Hawaiian parking lot, taking up three whiteboards to ideate our design, and daily pizza runs to fulfill our 3 AM cravings. With my team, there was no need to be scared of failing because I always had these memories to default to, to remember. Essentially, they taught me to keep smiling. It's this same mentality that we brought to [[6036 Peninsula Robotics|https://www.team6036.com/]] (another story for another time), a team eager to push the envelope of what FRC teams usually do. For the same reason—there's no reason to be scared of failing. These passionate communities and the memories I've made with them will stay with me forever, and I will always be grateful for the lessons they taught me.">
           <div class="card-title">Robots</div>
           <div class="card-image">
             <img src="images/community/robots.jpg" alt="Robots">
@@ -310,7 +366,7 @@
 
       <!-- Row 2: card + quote + card -->
       <div class="mid-row">
-        <div class="community-card" data-title="Basketball" data-description="Description for basketball community goes here. Talk about what this community means to you, what you've built together, and the experiences that shaped you.">
+        <div class="community-card" data-title="Basketball" data-description="In my eyes, sports are a universal language. When I step on to that basketball court, I can immediately bond with others, asking &quot;Do you need another one?&quot; or &quot;Did you watch the game yesterday?&quot; As I ask for the ball, we laugh as somebody misses an easy shot, marvel when they hit an insane one. With someone I met just 20 minutes ago, I pour my heart out onto the court because I love this sport, its environment, this bonding. The reason I play basketball is one similar to why I do anything—freedom. How when I step on the blacktop, everything fades away. My mind is solely focused on the leather of my Spalding ball, the satisfaction of hearing the swish. How I have the ability to attack the hoop in any way I want. Replicating Harden's step back or KD's hesi, stringing together feints and footwork—each drive is an opportunity to try something new and cool. And that feeling, ball in hand with the game on the line after 45 minutes of hard-fought deadlock, it's addicting to take that shot. But swish or airball, the smiles of everybody on the court make it all worth it.">
           <div class="card-title">Basketball</div>
           <div class="card-image">
             <img src="images/community/bball.jpg" alt="Basketball">
@@ -353,74 +409,211 @@
     const grid = document.getElementById('cardGrid');
     const cards = document.querySelectorAll('.community-card');
     const expandedView = document.getElementById('expandedView');
-    const expandedImg = document.getElementById('expandedImg');
-    const expandedTitle = document.getElementById('expandedTitle');
+    const expandedViewImage = document.getElementById('expandedViewImage');
+    const expandedViewTitle = document.getElementById('expandedViewTitle');
     const expandedDesc = document.getElementById('expandedDesc');
     const closeBtn = document.getElementById('closeBtn');
+    const skipBtn = document.getElementById('skipBtn');
+    const pageHeader = document.querySelector('.page-header');
+    const pageEl = document.querySelector('.page');
     let typingInterval = null;
+    let typingTokens = [];
+    let typingIndex = 0;
+    let ghostTitle = null;
+    let ghostImage = null;
+
+    // Helper: get page content area (top of padding)
+    function getContentArea() {
+      const pr = pageEl.getBoundingClientRect();
+      const cs = getComputedStyle(pageEl);
+      const pt = parseFloat(cs.paddingTop);
+      const pl = parseFloat(cs.paddingLeft);
+      const prr = parseFloat(cs.paddingRight);
+      return { top: pr.top + pt, left: pr.left + pl, width: pr.width - pl - prr };
+    }
 
     cards.forEach(card => {
       card.addEventListener('click', () => {
         const title = card.dataset.title;
         const description = card.dataset.description;
-        const imgSrc = card.querySelector('.card-image img').src;
+        const titleEl = card.querySelector('.card-title');
+        const imageEl = card.querySelector('.card-image');
+        const imgSrc = imageEl.querySelector('img').src;
 
-        // Set up expanded view
-        expandedImg.src = imgSrc;
-        expandedTitle.textContent = title;
-        expandedDesc.innerHTML = '';
+        // Measure starting positions before any DOM changes
+        const titleRect = titleEl.getBoundingClientRect();
+        const imageRect = imageEl.getBoundingClientRect();
 
-        // Fade out grid
-        grid.classList.add('faded');
-        card.classList.add('active');
+        const content = getContentArea();
+        const expandedImageH = 200;
 
+        const imgTarget = { top: content.top, left: content.left, width: content.width, height: expandedImageH };
+        const titleTarget = { top: content.top + expandedImageH + 20, left: content.left };
+
+        // Fade out header + grid (keep in flow to prevent layout shift during animation)
+        pageHeader.classList.add('hiding');
+        grid.classList.add('hiding');
+
+        // Create ghost image
+        ghostImage = document.createElement('div');
+        ghostImage.className = 'ghost ghost-image';
+        ghostImage.innerHTML = '<img src="' + imgSrc + '" alt="">';
+        ghostImage.style.top = imageRect.top + 'px';
+        ghostImage.style.left = imageRect.left + 'px';
+        ghostImage.style.width = imageRect.width + 'px';
+        ghostImage.style.height = imageRect.height + 'px';
+        document.body.appendChild(ghostImage);
+
+        // Create ghost title
+        ghostTitle = document.createElement('div');
+        ghostTitle.className = 'ghost ghost-title';
+        ghostTitle.textContent = title;
+        ghostTitle.style.top = titleRect.top + 'px';
+        ghostTitle.style.left = titleRect.left + 'px';
+        ghostTitle.style.width = titleRect.width + 'px';
+        ghostTitle.style.fontSize = '0.82rem';
+        ghostTitle.style.padding = '0.7rem 1rem';
+        ghostTitle.style.textAlign = 'center';
+        document.body.appendChild(ghostTitle);
+
+        // Force reflow then animate
+        ghostImage.offsetHeight;
+        ghostImage.style.top = imgTarget.top + 'px';
+        ghostImage.style.left = imgTarget.left + 'px';
+        ghostImage.style.width = imgTarget.width + 'px';
+        ghostImage.style.height = imgTarget.height + 'px';
+
+        ghostTitle.style.top = titleTarget.top + 'px';
+        ghostTitle.style.left = titleTarget.left + 'px';
+        ghostTitle.style.width = 'auto';
+        ghostTitle.style.fontSize = '1.3rem';
+        ghostTitle.style.padding = '0';
+        ghostTitle.style.textAlign = 'left';
+
+        // After animation: crossfade ghosts → in-flow expanded view
         setTimeout(() => {
-          grid.style.display = 'none';
+          // Populate expanded view before showing it
+          expandedViewImage.innerHTML = '<img src="' + imgSrc + '" alt="' + title + '">';
+          expandedViewTitle.textContent = title;
+          expandedDesc.innerHTML = '';
+
+          // Show expanded view and scroll to top
           expandedView.style.display = 'block';
-          // Trigger reflow for transition
-          expandedView.offsetHeight;
-          expandedView.classList.add('visible');
+          window.scrollTo({ top: 0, behavior: 'instant' });
 
-          // Scroll to top
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          // Fade in expanded view and fade out ghosts simultaneously (no blank frame)
+          requestAnimationFrame(() => {
+            expandedView.classList.add('visible');
+            ghostImage.style.opacity = '0';
+            ghostTitle.style.opacity = '0';
+            typeText(description);
+          });
 
-          // Start typing effect
-          typeText(description);
+          // Remove ghosts after they've faded, then collapse header/grid from flow
+          setTimeout(() => {
+            if (ghostImage) { ghostImage.remove(); ghostImage = null; }
+            if (ghostTitle) { ghostTitle.remove(); ghostTitle = null; }
+            pageHeader.classList.add('hidden');
+            grid.classList.add('hidden');
+          }, 450);
         }, 500);
       });
     });
 
     closeBtn.addEventListener('click', () => {
-      // Stop typing
       if (typingInterval) clearInterval(typingInterval);
 
       // Fade out expanded view
       expandedView.classList.remove('visible');
 
       setTimeout(() => {
+        // Hide expanded view and clear content
         expandedView.style.display = 'none';
-        grid.style.display = 'flex';
-        // Trigger reflow
-        grid.offsetHeight;
-        grid.classList.remove('faded');
-        cards.forEach(c => c.classList.remove('active'));
-      }, 400);
+        expandedViewImage.innerHTML = '';
+        expandedViewTitle.textContent = '';
+        expandedDesc.innerHTML = '';
+
+        // Restore grid + header
+        pageHeader.classList.remove('hidden');
+        grid.classList.remove('hidden');
+        requestAnimationFrame(() => {
+          pageHeader.classList.remove('hiding');
+          grid.classList.remove('hiding');
+        });
+
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }, 350);
     });
+
+    skipBtn.addEventListener('click', () => {
+      finishTyping();
+    });
+
+    function finishTyping() {
+      if (typingInterval) clearInterval(typingInterval);
+      typingInterval = null;
+      // Render all remaining tokens instantly
+      const cursor = expandedDesc.querySelector('.typing-cursor');
+      while (typingIndex < typingTokens.length) {
+        const token = typingTokens[typingIndex];
+        if (token.type === 'char') {
+          cursor.insertAdjacentText('beforebegin', token.value);
+        } else {
+          const a = document.createElement('a');
+          a.href = token.url;
+          a.textContent = token.text;
+          a.target = '_blank';
+          a.rel = 'noopener noreferrer';
+          cursor.insertAdjacentElement('beforebegin', a);
+        }
+        typingIndex++;
+      }
+      if (cursor) cursor.remove();
+      skipBtn.classList.remove('visible');
+    }
 
     function typeText(text) {
       if (typingInterval) clearInterval(typingInterval);
-      let i = 0;
+
+      // Parse text into plain chars and link objects
+      typingTokens = [];
+      typingIndex = 0;
+      const linkRegex = /\[\[([^\|]+)\|([^\]]+)\]\]/g;
+      let lastIndex = 0;
+      let match;
+      while ((match = linkRegex.exec(text)) !== null) {
+        if (match.index > lastIndex) {
+          for (const c of text.slice(lastIndex, match.index)) typingTokens.push({ type: 'char', value: c });
+        }
+        typingTokens.push({ type: 'link', text: match[1], url: match[2] });
+        lastIndex = match.index + match[0].length;
+      }
+      if (lastIndex < text.length) {
+        for (const c of text.slice(lastIndex)) typingTokens.push({ type: 'char', value: c });
+      }
+
       expandedDesc.innerHTML = '<span class="typing-cursor"></span>';
+      skipBtn.classList.add('visible');
 
       typingInterval = setInterval(() => {
-        if (i < text.length) {
-          // Insert character before cursor
+        if (typingIndex < typingTokens.length) {
           const cursor = expandedDesc.querySelector('.typing-cursor');
-          cursor.insertAdjacentText('beforebegin', text[i]);
-          i++;
+          const token = typingTokens[typingIndex];
+          if (token.type === 'char') {
+            cursor.insertAdjacentText('beforebegin', token.value);
+          } else {
+            const a = document.createElement('a');
+            a.href = token.url;
+            a.textContent = token.text;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            cursor.insertAdjacentElement('beforebegin', a);
+          }
+          typingIndex++;
         } else {
           clearInterval(typingInterval);
-          // Remove cursor after a brief pause
+          typingInterval = null;
+          skipBtn.classList.remove('visible');
           setTimeout(() => {
             const cursor = expandedDesc.querySelector('.typing-cursor');
             if (cursor) cursor.remove();
