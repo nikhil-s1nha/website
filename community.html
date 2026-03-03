@@ -208,16 +208,69 @@
   }
   .expanded-view-image {
     width: 100%;
-    height: 200px;
+    height: 340px;
     background: var(--card-bg);
     overflow: hidden;
     margin-bottom: 1.25rem;
+    position: relative;
   }
-  .expanded-view-image img {
+  /* ── Carousel ── */
+  .carousel-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  .carousel-slide {
+    min-width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+  }
+  .carousel-slide img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(51,51,51,0.45);
+    border: none;
+    color: #fff;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    font-family: inherit;
+    z-index: 10;
+  }
+  .carousel-btn:hover { background: rgba(51,51,51,0.75); }
+  .carousel-btn.prev { left: 0.75rem; }
+  .carousel-btn.next { right: 0.75rem; }
+  .carousel-dots {
+    position: absolute;
+    bottom: 0.6rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.4rem;
+  }
+  .carousel-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.45);
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    transition: background 0.2s;
+  }
+  .carousel-dot.active { background: rgba(255,255,255,0.9); }
   .expanded-view-title {
     font-size: 1.3rem;
     font-weight: 500;
@@ -306,6 +359,7 @@
   .card-row:last-of-type .community-card:nth-child(1) { animation-delay: 0.45s; }
   .card-row:last-of-type .community-card:nth-child(2) { animation-delay: 0.5s; }
   /* ── Responsive ── */
+
   @media (max-width: 768px) {
     .page { padding: 2rem 1.5rem 4rem; }
     .card-row {
@@ -349,27 +403,27 @@
     <div class="cards-wrapper" id="cardGrid">
       <!-- Row 1: 2 cards -->
       <div class="card-row">
-        <div class="community-card" data-title="Rockets" data-description="Freedom. That one word embodies why I founded Space Pickles. More than an eagerness to replicate the insane capabilities of SpaceX's reusable rockets, I started Space Pickles to create a community where the freedom to pursue one's curiosity became the culture. And since the team's beginning 2 years ago, where we've grown from 3 to 30 people, I'm proud to say this culture exists. Building 3D-printed rockets, custom flight computers, and nonlinear optimization for airbrakes are all novel ideas we pursued without hesitation because we wanted to. That's it. And while this ambition often leads to hundreds of failures, it's a sense of togetherness that justifies our gamble. That feeling when we succeed together, in our own way, beats anything. But more than rockets, this culture has changed who I am. As my team has all merged our visions of what we want this team to be and what freedom means, our culture is a melting pot of perspectives from which I've understood how to lead. How to help others grow. Watching the teammates around me find themselves in our community is everything I could have wanted from a team, and pushes me to cultivate this freedom in more communities for everyone, everywhere.">
+        <div class="community-card" data-title="Rockets" data-images='["images/community/rocketry/IMG_7789 (2).jpeg","images/community/rocketry/PHOTO-2025-10-05-18-07-51 3.JPEG"]' data-description="Freedom. That one word embodies why I founded Space Pickles. More than an eagerness to replicate the insane capabilities of SpaceX's reusable rockets, I started Space Pickles to create a community where the freedom to pursue one's curiosity became the culture. And since the team's beginning 2 years ago, where we've grown from 3 to 30 people, I'm proud to say this culture exists. Building 3D-printed rockets, custom flight computers, and nonlinear optimization for airbrakes are all novel ideas we pursued without hesitation because we wanted to. That's it. And while this ambition often leads to hundreds of failures, it's a sense of togetherness that justifies our gamble. That feeling when we succeed together, in our own way, beats anything. But more than rockets, this culture has changed who I am. As my team has all merged our visions of what we want this team to be and what freedom means, our culture is a melting pot of perspectives from which I've understood how to lead. How to help others grow. Watching the teammates around me find themselves in our community is everything I could have wanted from a team, and pushes me to cultivate this freedom in more communities for everyone, everywhere.">
           <div class="card-title">Rockets</div>
           <div class="card-image">
-            <img src="images/community/rockets.jpg" alt="Rockets">
+            <img src="images/community/rocketry/IMG_7789 (2).jpeg" alt="Rockets">
           </div>
         </div>
 
         <div class="community-card" data-title="Robots" data-description="For years I debated whether I loved robotics for itself or the community. Despite joining [[9114 Rotationaries|https://www.frc9114rotationaries.org/]] to fill up my resume, spending my evenings in that garage soon became something I looked forward to doing. Surrounded by passionate, driven individuals I wanted to learn with them, compete with them, struggle with them, and ultimately win with them. My freshman and sophomore year, this motivation pushed me to learn everything about vision and control theory, putting in 60 hour weeks and sleepless nights. While it was tiring to shoulder the burden of the entire software team (story for another time), it felt good as each one of my breakthroughs put a smile on the face of my teammates. Yet even when I failed, those smiles would still be there, removing the toxicity from failing and encouraging me to persevere. While unfortunately we didn't qualify for the world championships, the experience taught me something important about failure. When I look back on that season, I don't remember falling short from qualifying. Instead I remember building our robot the night before the competition in a Hawaiian parking lot, taking up three whiteboards to ideate our design, and daily pizza runs to fulfill our 3 AM cravings. With my team, there was no need to be scared of failing because I always had these memories to default to, to remember. Essentially, they taught me to keep smiling. It's this same mentality that we brought to [[6036 Peninsula Robotics|https://www.team6036.com/]] (another story for another time), a team eager to push the envelope of what FRC teams usually do. For the same reason—there's no reason to be scared of failing. These passionate communities and the memories I've made with them will stay with me forever, and I will always be grateful for the lessons they taught me.">
           <div class="card-title">Robots</div>
           <div class="card-image">
-            <img src="images/community/robots.jpg" alt="Robots">
+            <img src="images/community/robotics/pickle2 (1).jpeg" alt="Robots">
           </div>
         </div>
       </div>
 
       <!-- Row 2: card + quote + card -->
       <div class="mid-row">
-        <div class="community-card" data-title="Basketball" data-description="In my eyes, sports are a universal language. When I step on to that basketball court, I can immediately bond with others, asking &quot;Do you need another one?&quot; or &quot;Did you watch the game yesterday?&quot; As I ask for the ball, we laugh as somebody misses an easy shot, marvel when they hit an insane one. With someone I met just 20 minutes ago, I pour my heart out onto the court because I love this sport, its environment, this bonding. The reason I play basketball is one similar to why I do anything—freedom. How when I step on the blacktop, everything fades away. My mind is solely focused on the leather of my Spalding ball, the satisfaction of hearing the swish. How I have the ability to attack the hoop in any way I want. Replicating Harden's step back or KD's hesi, stringing together feints and footwork—each drive is an opportunity to try something new and cool. And that feeling, ball in hand with the game on the line after 45 minutes of hard-fought deadlock, it's addicting to take that shot. But swish or airball, the smiles of everybody on the court make it all worth it.">
+        <div class="community-card" data-title="Basketball" data-description="In my eyes, sports are a universal language. When I step on to that basketball court, I can immediately bond with others, asking &quot;Do you need another one?&quot; or &quot;Did you watch the game yesterday?&quot; As I ask for the ball, we laugh as somebody misses an easy shot, marvel when they hit an insane one. With someone I met just 20 minutes ago, I pour my heart out onto the court because I love this sport, its environment, this bonding. The reason I play basketball is one similar to why I do anything—freedom. How when I step on the blacktop, everything fades away. My mind is solely focused on the leather of my Spalding ball, the satisfaction of hearing the swish. How I have the ability to attack the hoop in any way I want. Replicating Harden's step back or KD's hesi, stringing together feints and footwork—each drive is an opportunity to try something new and cool. And that feeling, ball in hand with the game on the line after 45 minutes of hard-fought deadlock, it's addicting to take that shot. But swish or airball, the smiles of everybody on the court make it all worth it. In the second semester of senior year, I've brought upwards of 30 people to my community's basketball to play. It provides a sense of comfort in being together, a place of belonging for the misfits, and a place of equality for everyone.">
           <div class="card-title">Basketball</div>
           <div class="card-image">
-            <img src="images/community/bball.jpg" alt="Basketball">
+            <img src="images/community/basketball/basketbal.png" alt="Basketball" style="object-position: bottom;">
           </div>
         </div>
 
@@ -381,24 +435,24 @@
         <div class="community-card" data-title="Dentists" data-description="Description for dentists community goes here. Talk about what this community means to you, what you've built together, and the experiences that shaped you.">
           <div class="card-title">Dentists</div>
           <div class="card-image">
-            <img src="images/community/dentists.jpg" alt="Dentists">
+            <img src="images/community/dentists/dentists.jpg" alt="Dentists">
           </div>
         </div>
       </div>
 
       <!-- Row 3: 2 cards -->
       <div class="card-row">
-        <div class="community-card" data-title="Spamdemwood" data-description="Description for Spamdemwood community goes here. Talk about what this community means to you, what you've built together, and the experiences that shaped you.">
+        <div class="community-card" data-title="Spamdemwood" data-description="I think we're all chasing belonging. But before I rant I should define the word. To me, belonging is that feeling of going home and knowing someone will ask how your day was. That feeling of entering a room and searching for that other person searching for you too. Or to put it simply, that feeling of being wanted. I've been lucky enough to experience this feeling with seven other boys whom I've grown up with. More than friends, they're brothers—I'd do anything for them. Because when I'm with them, I can be myself. In fact, my best version of it. They keep me in check if my ego is too big, motivate me when I'm down, and most of all want me when I think others don't. They're my support system, my best friends, my reminders to smile, and my brothers. As we've gone camping, skied, played Punishment, done snails, ate food, cheered each other on, and held each other through our lowest, we've grown together. We started Spamdemwood in our junior year, a group spam to document whatever our heart desires, from doing fantasy punishments to making edits of each other. The community we've shared it with has also become our own, a group of friends that we keep close to ourselves, and ultimately a group of people that I love to be around.">
           <div class="card-title">Spamdemwood</div>
           <div class="card-image">
-            <img src="images/community/spamdemwood.jpg" alt="Spamdemwood">
+            <img src="images/community/spamdemwood/spamdemwood.jpg" alt="Spamdemwood">
           </div>
         </div>
 
-        <div class="community-card" data-title="Teaching" data-description="Description for teaching community goes here. Talk about what this community means to you, what you've built together, and the experiences that shaped you.">
+        <div class="community-card" data-title="Teaching" data-description="Inherently, I've loved to teach. I love watching that sort of &quot;aha&quot; moment when something clicks in the person I'm helping—their eyes widen and their expression transforms from anxiety to a smile. I've realized this for a while, from teaching my brother algebra every Sunday on our dining table, constantly helping kids in class, and teaching STEM classes such as coding or rocketry. But a part of this eagerness also comes from the fact that I believe current systems or societal standards don't make learning as simple as it should be. Especially in the competitive Bay Area, I've always worked with kids who more than struggling with content, are fighting mental struggles of meeting expectations or anxiety. It's actually this sentiment that pushed me to start [[Space Pickles Rocketry Summer Camp|https://spacepicklesrocketry.com/summer-camp]], inviting 50 kids to learn everything about aerospace in an environment solely focused on cultivating curiosity. At first it was difficult—I had to get several kids out of this mindset. Some wanted to be nonchalant, thinking that trying was lame. Some were scared of failing. Many were scared of exploring. But as all of them failed with me, built with me, and launched their own creations with me, I saw them develop the curiosity I hope to inspire. Now today, these same kids message me every week to launch rockets. Sometimes as I walk to my local coffee shop ([[Suji's|https://sujuscoffee.com/]]) or am playing basketball, one of them will find me and ask, &quot;When are we launching?&quot; And as I've conducted more of these sessions and taught more people, these students have inspired me to continue teaching. Actually, their newfound curiosity serves as a reminder for myself to always be curious.">
           <div class="card-title">Teaching</div>
           <div class="card-image">
-            <img src="images/community/teaching.jpg" alt="Teaching">
+            <img src="images/community/teaching/teaching.jpg" alt="Teaching">
           </div>
         </div>
       </div>
@@ -421,6 +475,7 @@
     let typingIndex = 0;
     let ghostTitle = null;
     let ghostImage = null;
+    let carouselAutoPlay = null;
 
     // Helper: get page content area (top of padding)
     function getContentArea() {
@@ -445,10 +500,11 @@
         const imageRect = imageEl.getBoundingClientRect();
 
         const content = getContentArea();
-        const expandedImageH = 200;
+        const expandedImageH = 340;
+        const targetTop = parseFloat(getComputedStyle(pageEl).paddingTop);
 
-        const imgTarget = { top: content.top, left: content.left, width: content.width, height: expandedImageH };
-        const titleTarget = { top: content.top + expandedImageH + 20, left: content.left };
+        const imgTarget = { top: targetTop, left: content.left, width: content.width, height: expandedImageH };
+        const titleTarget = { top: targetTop + expandedImageH + 20, left: content.left };
 
         // Fade out header + grid (keep in flow to prevent layout shift during animation)
         pageHeader.classList.add('hiding');
@@ -493,7 +549,9 @@
         // After animation: crossfade ghosts → in-flow expanded view
         setTimeout(() => {
           // Populate expanded view before showing it
-          expandedViewImage.innerHTML = '<img src="' + imgSrc + '" alt="' + title + '">';
+          const imagesAttr = card.dataset.images;
+          const images = imagesAttr ? JSON.parse(imagesAttr) : [card.querySelector('.card-image img').getAttribute('src')];
+          buildCarousel(images, title);
           expandedViewTitle.textContent = title;
           expandedDesc.innerHTML = '';
 
@@ -522,6 +580,7 @@
 
     closeBtn.addEventListener('click', () => {
       if (typingInterval) clearInterval(typingInterval);
+      if (carouselAutoPlay) { clearInterval(carouselAutoPlay); carouselAutoPlay = null; }
 
       // Fade out expanded view
       expandedView.classList.remove('visible');
@@ -570,6 +629,38 @@
       }
       if (cursor) cursor.remove();
       skipBtn.classList.remove('visible');
+    }
+
+    function buildCarousel(images, title) {
+      if (images.length <= 1) {
+        expandedViewImage.innerHTML = '<img src="' + images[0] + '" alt="' + title + '" style="width:100%;height:100%;object-fit:cover;">';
+        return;
+      }
+      const slides = images.map(src =>
+        '<div class="carousel-slide"><img src="' + src + '" alt="' + title + '"></div>'
+      ).join('');
+      const dots = images.map((_, i) =>
+        '<button class="carousel-dot' + (i === 0 ? ' active' : '') + '" data-index="' + i + '"></button>'
+      ).join('');
+      expandedViewImage.innerHTML =
+        '<div class="carousel-track" id="carouselTrack">' + slides + '</div>' +
+        '<button class="carousel-btn prev" id="carouselPrev">&#8249;</button>' +
+        '<button class="carousel-btn next" id="carouselNext">&#8250;</button>' +
+        '<div class="carousel-dots">' + dots + '</div>';
+
+      let cur = 0;
+      const track = document.getElementById('carouselTrack');
+      const dotEls = expandedViewImage.querySelectorAll('.carousel-dot');
+      function goTo(n) {
+        cur = (n + images.length) % images.length;
+        track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+        dotEls.forEach((d, i) => d.classList.toggle('active', i === cur));
+      }
+      carouselAutoPlay = setInterval(() => goTo(cur + 1), 5000);
+      function resetAuto() { clearInterval(carouselAutoPlay); carouselAutoPlay = setInterval(() => goTo(cur + 1), 5000); }
+      document.getElementById('carouselPrev').addEventListener('click', () => { goTo(cur - 1); resetAuto(); });
+      document.getElementById('carouselNext').addEventListener('click', () => { goTo(cur + 1); resetAuto(); });
+      dotEls.forEach(d => d.addEventListener('click', () => { goTo(parseInt(d.dataset.index)); resetAuto(); }));
     }
 
     function typeText(text) {
