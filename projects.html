@@ -184,11 +184,14 @@
   }
   .project-track {
     display: flex;
+    width: 100%;
     height: 100%;
     transition: transform 0.6s ease-in-out;
   }
-  .project-track img {
-    min-width: 100%;
+  .project-track img,
+  .project-track video {
+    flex: 0 0 100%;
+    width: 100%;
     height: 100%;
     object-fit: cover;
   }
@@ -260,7 +263,7 @@
         </div>
         <ul class="project-bullets">
           <li>Founded <a href="https://spacepicklesrocketry.com" target="_blank">Space Pickles</a> chasing a vision of engineering freedom (and SpaceX)</li>
-          <li>Competed in <a href="https://rfrso.com/arc/" target="_blank">ARC</a>, trying everything and everything: 3D-printed rockets, airbrakes, avionics, nonlinear optimization</li>
+          <li>Competed in <a href="https://rfrso.com/arc/" target="_blank">ARC</a>, trying everything and everything: 3D-printed rockets, airbrakes, avionics, nonlinear optimization, wind tunnels</li>
           <li>Learned to make our own launch sites (junkyards, basketball courts, and backyards have been our second home)</li>
           <li>Propagated culture of freedom at <a href="https://www.ahsfuhsd.org/" target="_blank">AHS</a>, running around in pickles and challenging students to place 2000+ stickers on walls to prove we could</li>
         </ul>
@@ -271,8 +274,17 @@
       <div class="project-images">
         <div class="project-carousel">
           <div class="project-track">
-            <img src="images/projects/rocketry/1.jpg" alt="">
-            <img src="images/projects/rocketry/2.jpg" alt="">
+            <img src="images/projects/rocketry/1.png" alt="" style="object-position: 50% 10%;">
+            <video src="images/projects/rocketry/3.mov" muted playsinline loop style="object-position: 82% 50%;"></video>
+            <img src="images/projects/rocketry/4.png" alt="">
+            <img src="images/projects/rocketry/5.jpg" alt="">
+            <img src="images/projects/rocketry/6.jpg" alt="">
+            <img src="images/projects/rocketry/7.png" alt="" style="object-fit: contain;">
+            <video src="images/projects/rocketry/newvideo.mov" muted playsinline loop></video>
+            <img src="images/projects/rocketry/9.png" alt="" style="object-fit: contain;">
+            <video src="images/projects/rocketry/10.mov" muted playsinline loop></video>
+            <img src="images/projects/rocketry/11.png" alt="">
+            <img src="images/projects/rocketry/explosion.png" alt="">
           </div>
         </div>
         <div class="project-dots"></div>
@@ -421,12 +433,12 @@
   <script>
     document.querySelectorAll('.project-carousel').forEach(carousel => {
       const track = carousel.querySelector('.project-track');
-      const imgs = track.querySelectorAll('img');
+      const slides = track.querySelectorAll('img, video');
       const dotsContainer = carousel.nextElementSibling;
       let current = 0;
 
       // Create dots
-      imgs.forEach((_, i) => {
+      slides.forEach((_, i) => {
         const dot = document.createElement('span');
         dot.className = 'dot' + (i === 0 ? ' active' : '');
         dot.addEventListener('click', () => goTo(i));
@@ -436,15 +448,28 @@
       const dots = dotsContainer.querySelectorAll('.dot');
 
       function goTo(index) {
+        // Pause any video leaving
+        const leaving = slides[current];
+        if (leaving && leaving.tagName === 'VIDEO') {
+          leaving.pause();
+          leaving.currentTime = 0;
+        }
         current = index;
         track.style.transform = `translateX(-${current * 100}%)`;
         dots.forEach((d, i) => d.classList.toggle('active', i === current));
+        // Play video entering
+        const entering = slides[current];
+        if (entering && entering.tagName === 'VIDEO') {
+          entering.play().catch(() => {});
+        }
       }
 
-      // Auto-cycle every 4s
-      setInterval(() => {
-        goTo((current + 1) % imgs.length);
-      }, 4000);
+      // Play first slide if it's a video
+      if (slides[0] && slides[0].tagName === 'VIDEO') {
+        slides[0].play().catch(() => {});
+      }
+
+      // Navigation via dots only (no auto-cycle)
     });
   </script>
 </body>
