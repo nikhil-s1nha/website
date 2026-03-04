@@ -40,6 +40,9 @@
     --text-faint: #888888;
     --card-bg: #CECECE;
   }
+  html {
+    background-color: var(--bg);
+  }
   body {
     background-color: var(--bg);
     color: var(--text);
@@ -423,7 +426,7 @@
         <div class="community-card" data-title="Basketball" data-description="In my eyes, sports are a universal language. When I step on to that basketball court, I can immediately bond with others, asking &quot;Do you need another one?&quot; or &quot;Did you watch the game yesterday?&quot; As I ask for the ball, we laugh as somebody misses an easy shot, marvel when they hit an insane one. With someone I met just 20 minutes ago, I pour my heart out onto the court because I love this sport, its environment, this bonding. The reason I play basketball is one similar to why I do anything—freedom. How when I step on the blacktop, everything fades away. My mind is solely focused on the leather of my Spalding ball, the satisfaction of hearing the swish. How I have the ability to attack the hoop in any way I want. Replicating Harden's step back or KD's hesi, stringing together feints and footwork—each drive is an opportunity to try something new and cool. And that feeling, ball in hand with the game on the line after 45 minutes of hard-fought deadlock, it's addicting to take that shot. But swish or airball, the smiles of everybody on the court make it all worth it. In the second semester of senior year, I've brought upwards of 30 people to my community's basketball to play. It provides a sense of comfort in being together, a place of belonging for the misfits, and a place of equality for everyone.">
           <div class="card-title">Basketball</div>
           <div class="card-image">
-            <img src="images/community/basketball/basketbal.png" alt="Basketball" style="object-position: bottom;">
+            <img src="images/community/basketball/basketbal.png" alt="Basketball" style="object-position: 50% 70%;">
           </div>
         </div>
 
@@ -445,14 +448,14 @@
         <div class="community-card" data-title="Spamdemwood" data-description="I think we're all chasing belonging. But before I rant I should define the word. To me, belonging is that feeling of going home and knowing someone will ask how your day was. That feeling of entering a room and searching for that other person searching for you too. Or to put it simply, that feeling of being wanted. I've been lucky enough to experience this feeling with seven other boys whom I've grown up with. More than friends, they're brothers—I'd do anything for them. Because when I'm with them, I can be myself. In fact, my best version of it. They keep me in check if my ego is too big, motivate me when I'm down, and most of all want me when I think others don't. They're my support system, my best friends, my reminders to smile, and my brothers. As we've gone camping, skied, played Punishment, done snails, ate food, cheered each other on, and held each other through our lowest, we've grown together. We started Spamdemwood in our junior year, a group spam to document whatever our heart desires, from doing fantasy punishments to making edits of each other. The community we've shared it with has also become our own, a group of friends that we keep close to ourselves, and ultimately a group of people that I love to be around.">
           <div class="card-title">Spamdemwood</div>
           <div class="card-image">
-            <img src="images/community/spamdemwood/spamdemwood.jpg" alt="Spamdemwood">
+            <img src="images/community/spamdemwood/ea5eb8f0-f67e-41b9-84ff-96dd3a9319a8.jpeg" alt="Spamdemwood">
           </div>
         </div>
 
         <div class="community-card" data-title="Teaching" data-description="Inherently, I've loved to teach. I love watching that sort of &quot;aha&quot; moment when something clicks in the person I'm helping—their eyes widen and their expression transforms from anxiety to a smile. I've realized this for a while, from teaching my brother algebra every Sunday on our dining table, constantly helping kids in class, and teaching STEM classes such as coding or rocketry. But a part of this eagerness also comes from the fact that I believe current systems or societal standards don't make learning as simple as it should be. Especially in the competitive Bay Area, I've always worked with kids who more than struggling with content, are fighting mental struggles of meeting expectations or anxiety. It's actually this sentiment that pushed me to start [[Space Pickles Rocketry Summer Camp|https://spacepicklesrocketry.com/summer-camp]], inviting 50 kids to learn everything about aerospace in an environment solely focused on cultivating curiosity. At first it was difficult—I had to get several kids out of this mindset. Some wanted to be nonchalant, thinking that trying was lame. Some were scared of failing. Many were scared of exploring. But as all of them failed with me, built with me, and launched their own creations with me, I saw them develop the curiosity I hope to inspire. Now today, these same kids message me every week to launch rockets. Sometimes as I walk to my local coffee shop ([[Suji's|https://sujuscoffee.com/]]) or am playing basketball, one of them will find me and ask, &quot;When are we launching?&quot; And as I've conducted more of these sessions and taught more people, these students have inspired me to continue teaching. Actually, their newfound curiosity serves as a reminder for myself to always be curious.">
           <div class="card-title">Teaching</div>
           <div class="card-image">
-            <img src="images/community/teaching/teaching.jpg" alt="Teaching">
+            <img src="images/community/teaching/image.PNG" alt="Teaching">
           </div>
         </div>
       </div>
@@ -493,7 +496,9 @@
         const description = card.dataset.description;
         const titleEl = card.querySelector('.card-title');
         const imageEl = card.querySelector('.card-image');
-        const imgSrc = imageEl.querySelector('img').src;
+        const imgEl = imageEl.querySelector('img');
+        const imgSrc = imgEl.src;
+        const imgObjPosition = imgEl.style.objectPosition || '';
 
         // Measure starting positions before any DOM changes
         const titleRect = titleEl.getBoundingClientRect();
@@ -513,7 +518,7 @@
         // Create ghost image
         ghostImage = document.createElement('div');
         ghostImage.className = 'ghost ghost-image';
-        ghostImage.innerHTML = '<img src="' + imgSrc + '" alt="">';
+        ghostImage.innerHTML = '<img src="' + imgSrc + '" alt=""' + (imgObjPosition ? ' style="object-position:' + imgObjPosition + '"' : '') + '>';
         ghostImage.style.top = imageRect.top + 'px';
         ghostImage.style.left = imageRect.left + 'px';
         ghostImage.style.width = imageRect.width + 'px';
@@ -551,7 +556,9 @@
           // Populate expanded view before showing it
           const imagesAttr = card.dataset.images;
           const images = imagesAttr ? JSON.parse(imagesAttr) : [card.querySelector('.card-image img').getAttribute('src')];
-          buildCarousel(images, title);
+          const cardImg = card.querySelector('.card-image img');
+          const objPosition = cardImg ? cardImg.style.objectPosition : '';
+          buildCarousel(images, title, objPosition);
           expandedViewTitle.textContent = title;
           expandedDesc.innerHTML = '';
 
@@ -559,21 +566,21 @@
           expandedView.style.display = 'block';
           window.scrollTo({ top: 0, behavior: 'instant' });
 
-          // Fade in expanded view and fade out ghosts simultaneously (no blank frame)
+          // Fade in expanded view behind ghost (ghost stays on top, no crossfade gap)
           requestAnimationFrame(() => {
-            expandedView.classList.add('visible');
-            ghostImage.style.opacity = '0';
-            ghostTitle.style.opacity = '0';
-            typeText(description);
+            requestAnimationFrame(() => {
+              expandedView.classList.add('visible');
+              typeText(description);
+            });
           });
 
-          // Remove ghosts after they've faded, then collapse header/grid from flow
+          // Once expanded view is fully visible, instantly remove ghosts (same image = invisible swap)
           setTimeout(() => {
             if (ghostImage) { ghostImage.remove(); ghostImage = null; }
             if (ghostTitle) { ghostTitle.remove(); ghostTitle = null; }
             pageHeader.classList.add('hidden');
             grid.classList.add('hidden');
-          }, 450);
+          }, 380);
         }, 500);
       });
     });
@@ -631,13 +638,14 @@
       skipBtn.classList.remove('visible');
     }
 
-    function buildCarousel(images, title) {
+    function buildCarousel(images, title, objPosition) {
+      const posStyle = objPosition ? 'object-position:' + objPosition + ';' : '';
       if (images.length <= 1) {
-        expandedViewImage.innerHTML = '<img src="' + images[0] + '" alt="' + title + '" style="width:100%;height:100%;object-fit:cover;">';
+        expandedViewImage.innerHTML = '<img src="' + images[0] + '" alt="' + title + '" style="width:100%;height:100%;object-fit:cover;' + posStyle + '">';
         return;
       }
       const slides = images.map(src =>
-        '<div class="carousel-slide"><img src="' + src + '" alt="' + title + '"></div>'
+        '<div class="carousel-slide"><img src="' + src + '" alt="' + title + '" style="' + posStyle + '"></div>'
       ).join('');
       const dots = images.map((_, i) =>
         '<button class="carousel-dot' + (i === 0 ? ' active' : '') + '" data-index="' + i + '"></button>'
