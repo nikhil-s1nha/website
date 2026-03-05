@@ -176,11 +176,20 @@
     display: flex;
     flex-direction: column;
   }
+  .project-images.phone {
+    flex: 0 0 110px;
+    align-self: flex-start;
+    margin-right: -0.8rem;
+  }
   .project-carousel {
     width: 100%;
     height: 180px;
     overflow: hidden;
     background: #C2C2C2;
+    position: relative;
+  }
+  .phone .project-carousel {
+    height: 238px;
   }
   .project-track {
     display: flex;
@@ -196,10 +205,14 @@
     object-fit: cover;
   }
   .project-dots {
+    position: absolute;
+    bottom: 7px;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: center;
     gap: 0.4rem;
-    padding-top: 0.6rem;
+    z-index: 2;
   }
   .project-dots .dot {
     width: 6px;
@@ -286,8 +299,8 @@
             <img src="images/projects/rocketry/11.png" alt="">
             <img src="images/projects/rocketry/explosion.png" alt="">
           </div>
+          <div class="project-dots"></div>
         </div>
-        <div class="project-dots"></div>
       </div>
     </section>
 
@@ -302,7 +315,7 @@
           <li>Spending my summers filing files allowed me to recognize <a href="#" target="_blank">systemic problems</a> in the dental industry, like emergency appointments</li>
           <li>Built app + 3D-printed attachment + trained ML model to predict caries, gingivitis, and periodontitis reducing complications and therefore emergencies</li>
           <li>Constantly iterating (talked to 100+ patients/dentists to understand constraints)</li>
-          <li>Pitched at >10 dental expos, caught attention of VELMENI. Raised 2K.</li>
+          <li style="white-space: nowrap;">Pitched at >10 dental expos, met Mini Suri, now working w/ VELMENI. Raised 2K.</li>
         </ul>
         <div class="project-links">
           <a href="#" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
@@ -312,11 +325,14 @@
       <div class="project-images">
         <div class="project-carousel">
           <div class="project-track">
-            <img src="images/projects/identify/1.jpg" alt="">
-            <img src="images/projects/identify/2.jpg" alt="">
+            <img src="images/projects/identify/1.png" alt="">
+            <img src="images/projects/identify/2.png" alt="">
+            <img src="images/projects/identify/3.png" alt="">
+            <video src="images/projects/identify/4.mov" muted playsinline loop></video>
+            <img src="images/projects/identify/5.jpg" alt="" style="object-fit: contain;">
           </div>
+          <div class="project-dots"></div>
         </div>
-        <div class="project-dots"></div>
       </div>
     </section>
 
@@ -350,8 +366,8 @@
             <video src="images/projects/robotics/8.mov" muted playsinline loop></video>
             <img src="images/projects/robotics/9.png" alt="">
           </div>
+          <div class="project-dots"></div>
         </div>
-        <div class="project-dots"></div>
       </div>
     </section>
 
@@ -385,8 +401,8 @@
             <img src="images/projects/research/5.png" alt="">
             <video src="images/projects/research/6.mov" muted playsinline loop></video>
           </div>
+          <div class="project-dots"></div>
         </div>
-        <div class="project-dots"></div>
       </div>
     </section>
 
@@ -404,19 +420,19 @@
           <li>Currently building a central place for mini-games (Wavelength, Photo Roulette, etc) for bored seniors</li>
         </ul>
       </div>
-      <div class="project-images">
+      <div class="project-images phone" style="transform: translateX(-2rem); margin-left: 4rem;">
         <div class="project-carousel">
           <div class="project-track">
-            <img src="images/projects/apps/1.jpg" alt="">
-            <img src="images/projects/apps/2.jpg" alt="">
+            <video src="images/projects/apps/1.MOV" muted playsinline loop></video>
+            <video src="images/projects/apps/2.MOV" muted playsinline loop></video>
           </div>
+          <div class="project-dots"></div>
         </div>
-        <div class="project-dots"></div>
       </div>
     </section>
 
     <!-- ── 6. Other Stuff ── -->
-    <section class="project-card reverse">
+    <section class="project-card">
       <div class="project-text">
         <div class="project-header">
           <h2 class="project-name">Other Stuff</h2>
@@ -431,15 +447,6 @@
           <a href="#" aria-label="GitHub"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
         </div>
       </div>
-      <div class="project-images">
-        <div class="project-carousel">
-          <div class="project-track">
-            <img src="images/projects/other/1.jpg" alt="">
-            <img src="images/projects/other/2.jpg" alt="">
-          </div>
-        </div>
-        <div class="project-dots"></div>
-      </div>
     </section>
 
     <p style="margin-top: 2rem; text-align: center; font-size: 0.88rem; font-weight: 300; color: var(--text-faint); font-style: italic;">if you can't tell, I don't like to constrain myself to working on one problem—there's too many cool things to solve :)</p>
@@ -449,7 +456,7 @@
     document.querySelectorAll('.project-carousel').forEach(carousel => {
       const track = carousel.querySelector('.project-track');
       const slides = track.querySelectorAll('img, video');
-      const dotsContainer = carousel.nextElementSibling;
+      const dotsContainer = carousel.querySelector('.project-dots');
       let current = 0;
 
       // Create dots
