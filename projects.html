@@ -204,15 +204,19 @@
     height: 100%;
     object-fit: cover;
   }
-  .project-dots {
-    position: absolute;
-    bottom: 7px;
-    left: 0;
-    right: 0;
+  .project-nav {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    padding: 0.55rem 0 0.1rem;
+    line-height: 1;
+  }
+  .project-dots {
+    display: flex;
+    align-items: center;
     justify-content: center;
     gap: 0.4rem;
-    z-index: 2;
   }
   .project-dots .dot {
     width: 6px;
@@ -222,9 +226,25 @@
     opacity: 0.4;
     cursor: pointer;
     transition: opacity 0.3s ease;
+    flex-shrink: 0;
   }
   .project-dots .dot.active {
     opacity: 1;
+  }
+  .carousel-arrow {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-faint);
+    padding: 0;
+    margin: 0;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .carousel-arrow:hover {
+    color: var(--text);
   }
   /* ── Animations ── */
   @keyframes fadeIn {
@@ -299,7 +319,11 @@
             <img src="images/projects/rocketry/11.png" alt="">
             <img src="images/projects/rocketry/explosion.png" alt="">
           </div>
+        </div>
+        <div class="project-nav">
+          <button class="carousel-arrow carousel-prev"><svg width="7" height="11" viewBox="0 0 7 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="5.5 1 1 5.5 5.5 10"/></svg></button>
           <div class="project-dots"></div>
+          <button class="carousel-arrow carousel-next"><svg width="7" height="11" viewBox="0 0 7 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5 1 6 5.5 1.5 10"/></svg></button>
         </div>
       </div>
     </section>
@@ -331,7 +355,11 @@
             <video src="images/projects/identify/4.mp4" muted playsinline loop></video>
             <img src="images/projects/identify/5.jpg" alt="" style="object-fit: contain;">
           </div>
+        </div>
+        <div class="project-nav">
+          <button class="carousel-arrow carousel-prev"><svg width="7" height="11" viewBox="0 0 7 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="5.5 1 1 5.5 5.5 10"/></svg></button>
           <div class="project-dots"></div>
+          <button class="carousel-arrow carousel-next"><svg width="7" height="11" viewBox="0 0 7 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5 1 6 5.5 1.5 10"/></svg></button>
         </div>
       </div>
     </section>
@@ -366,7 +394,11 @@
             <video src="images/projects/robotics/8.mp4" muted playsinline loop></video>
             <img src="images/projects/robotics/9.png" alt="">
           </div>
+        </div>
+        <div class="project-nav">
+          <button class="carousel-arrow carousel-prev"><svg width="7" height="11" viewBox="0 0 7 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="5.5 1 1 5.5 5.5 10"/></svg></button>
           <div class="project-dots"></div>
+          <button class="carousel-arrow carousel-next"><svg width="7" height="11" viewBox="0 0 7 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5 1 6 5.5 1.5 10"/></svg></button>
         </div>
       </div>
     </section>
@@ -401,7 +433,11 @@
             <img src="images/projects/research/5.png" alt="">
             <video src="images/projects/research/6.mp4" muted playsinline loop></video>
           </div>
+        </div>
+        <div class="project-nav">
+          <button class="carousel-arrow carousel-prev"><svg width="7" height="11" viewBox="0 0 7 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="5.5 1 1 5.5 5.5 10"/></svg></button>
           <div class="project-dots"></div>
+          <button class="carousel-arrow carousel-next"><svg width="7" height="11" viewBox="0 0 7 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5 1 6 5.5 1.5 10"/></svg></button>
         </div>
       </div>
     </section>
@@ -426,7 +462,11 @@
             <video src="images/projects/apps/1.mp4" muted playsinline loop></video>
             <video src="images/projects/apps/2.mp4" muted playsinline loop></video>
           </div>
+        </div>
+        <div class="project-nav">
+          <button class="carousel-arrow carousel-prev"><svg width="7" height="11" viewBox="0 0 7 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="5.5 1 1 5.5 5.5 10"/></svg></button>
           <div class="project-dots"></div>
+          <button class="carousel-arrow carousel-next"><svg width="7" height="11" viewBox="0 0 7 11" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5 1 6 5.5 1.5 10"/></svg></button>
         </div>
       </div>
     </section>
@@ -453,7 +493,10 @@
     document.querySelectorAll('.project-carousel').forEach(carousel => {
       const track = carousel.querySelector('.project-track');
       const slides = track.querySelectorAll('img, video');
-      const dotsContainer = carousel.querySelector('.project-dots');
+      const nav = carousel.parentElement.querySelector('.project-nav');
+      const dotsContainer = nav.querySelector('.project-dots');
+      const prevBtn = nav.querySelector('.carousel-prev');
+      const nextBtn = nav.querySelector('.carousel-next');
       let current = 0;
 
       // Create dots
@@ -467,28 +510,27 @@
       const dots = dotsContainer.querySelectorAll('.dot');
 
       function goTo(index) {
-        // Pause any video leaving
         const leaving = slides[current];
         if (leaving && leaving.tagName === 'VIDEO') {
           leaving.pause();
           leaving.currentTime = 0;
         }
-        current = index;
+        current = (index + slides.length) % slides.length;
         track.style.transform = `translateX(-${current * 100}%)`;
         dots.forEach((d, i) => d.classList.toggle('active', i === current));
-        // Play video entering
         const entering = slides[current];
         if (entering && entering.tagName === 'VIDEO') {
           entering.play().catch(() => {});
         }
       }
 
+      prevBtn.addEventListener('click', () => goTo(current - 1));
+      nextBtn.addEventListener('click', () => goTo(current + 1));
+
       // Play first slide if it's a video
       if (slides[0] && slides[0].tagName === 'VIDEO') {
         slides[0].play().catch(() => {});
       }
-
-      // Navigation via dots only (no auto-cycle)
     });
   </script>
 </body>
