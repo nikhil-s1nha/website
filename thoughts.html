@@ -67,9 +67,16 @@
   .back-link:hover {
     color: var(--text);
   }
+  .title-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
   .page-title-row {
     margin-top: 1.5rem;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     align-items: center;
     gap: 1rem;
   }
@@ -141,6 +148,22 @@
   .post-item:nth-child(9)  { animation-delay: 0.5s; }
   .post-item:nth-child(10) { animation-delay: 0.55s; }
   .post-item:nth-child(11) { animation-delay: 0.6s; }
+  .post-item:nth-child(12) { animation-delay: 0.65s; }
+  .post-item:nth-child(13) { animation-delay: 0.7s; }
+  /* ── Star / Favorite ── */
+  .star {
+    color: var(--text);
+    margin-right: 0.45rem;
+    font-size: 0.85em;
+    opacity: 0.75;
+    vertical-align: middle;
+    line-height: 1;
+  }
+  .legend {
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    letter-spacing: 0.01em;
+  }
   /* ── Responsive ── */
   @media (max-width: 768px) {
     .page { padding: 2rem 1.5rem 4rem; }
@@ -153,14 +176,25 @@
     <header class="page-header">
       <a href="index.html" class="back-link">&larr; Back</a>
       <div class="page-title-row">
-        <h1 class="page-title">Thoughts</h1>
-        <a href="https://medium.com/@nikhils1nha" target="_blank" class="medium-link" aria-label="Medium">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
-        </a>
+        <div class="title-left">
+          <h1 class="page-title">Thoughts</h1>
+          <a href="https://medium.com/@nikhils1nha" target="_blank" class="medium-link" aria-label="Medium">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+          </a>
+        </div>
+        <p class="legend"><span class="star">★</span> favorite stories</p>
       </div>
     </header>
 
     <div class="post-list">
+      <a href="https://medium.com/@nikhils1nha/learning-for-learning-bbd00669566c" target="_blank" class="post-item">
+        <h2 class="post-title">Learning for Learning</h2>
+        <p class="post-date">Apr 13, 2026</p>
+      </a>
+      <a href="https://medium.com/@nikhils1nha/system-late-night-thoughts-cc2353af31c3" target="_blank" class="post-item">
+        <h2 class="post-title">System (late night thoughts)</h2>
+        <p class="post-date">Apr 8, 2026</p>
+      </a>
       <a href="https://medium.com/@nikhils1nha/pent-up-09a0400f28eb" target="_blank" class="post-item">
         <h2 class="post-title">Pent Up</h2>
         <p class="post-date">Apr 8, 2026</p>
@@ -187,7 +221,7 @@
       </a>
 
       <a href="https://medium.com/@nikhils1nha/tire-ea7fc88b863c" target="_blank" class="post-item">
-        <h2 class="post-title">Tire</h2>
+        <h2 class="post-title"><span class="star">★</span>Tire</h2>
         <p class="post-date">Nov 22, 2025</p>
       </a>
 
