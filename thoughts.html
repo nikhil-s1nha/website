@@ -369,6 +369,21 @@
   mediumPoetry.classList.add('hidden');
   let current = 'thoughts';
 
+  // auto-switch to poetry tab if URL hash is #poetry
+  if (window.location.hash === '#poetry') {
+    current = 'poetry';
+    tabs.forEach(t => {
+      t.classList.toggle('active',   t.dataset.tab === 'poetry');
+      t.classList.toggle('inactive', t.dataset.tab !== 'poetry');
+    });
+    legendThoughts.classList.add('hidden');
+    legendPoetry.classList.remove('hidden');
+    mediumThoughts.classList.add('hidden');
+    mediumPoetry.classList.remove('hidden');
+    document.getElementById('panel-thoughts').style.display = 'none';
+    document.getElementById('panel-poetry').style.display = 'block';
+  }
+
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const target = tab.dataset.tab;
