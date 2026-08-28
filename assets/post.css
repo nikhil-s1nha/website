@@ -1,0 +1,168 @@
+/* Reading pages: essays (.post) and poems (.poem). */
+
+.reader { max-width: 680px; margin: 0 auto; padding: 3rem 2.5rem 6rem; }
+.reader.verse { max-width: 620px; }
+
+/* -- masthead -- */
+.post-header { margin: 2.5rem 0 3rem; }
+.post-heading {
+  font-size: clamp(1.9rem, 5vw, 2.9rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+}
+.post-meta {
+  margin-top: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--text-faint);
+  letter-spacing: 0.02em;
+}
+.post-meta .dot { opacity: 0.5; }
+.post-meta .star { color: var(--text); opacity: 0.75; }
+
+/* verse mirrors the poetry axis from the index: masthead hangs right */
+.reader.verse .post-header { text-align: right; }
+.reader.verse .post-meta { justify-content: flex-end; }
+
+/* -- prose -- */
+.post-body { font-size: 1.05rem; line-height: 1.78; color: var(--text-light); }
+.post-body > * + * { margin-top: 1.5em; }
+.post-body p { text-wrap: pretty; }
+.post-body h2, .post-body h3 {
+  color: var(--text);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-top: 2.4em;
+}
+.post-body h2 { font-size: 1.4rem; }
+.post-body h3 { font-size: 1.15rem; }
+.post-body a { color: var(--text); text-decoration: underline; text-underline-offset: 0.18em; text-decoration-thickness: 1px; text-decoration-color: var(--text-faint); transition: text-decoration-color 0.25s ease; }
+.post-body a:hover { text-decoration-color: var(--text); }
+.post-body strong { color: var(--text); font-weight: 600; }
+.post-body blockquote {
+  border-left: 2px solid var(--rule);
+  padding-left: 1.4rem;
+  color: var(--text-faint);
+  font-style: italic;
+}
+.post-body blockquote > * + * { margin-top: 1em; }
+.post-body hr { border: 0; border-top: 1px solid var(--rule); margin: 3em auto; width: 40%; }
+.post-body ul, .post-body ol { padding-left: 1.3rem; }
+.post-body li + li { margin-top: 0.5em; }
+.post-body figure { margin-left: 0; margin-right: 0; }
+.post-body img { max-width: 100%; height: auto; display: block; }
+.post-body pre {
+  background: rgba(51,51,51,0.06);
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+.post-body code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.88em; }
+
+/* -- verse -- */
+.poem-body {
+  font-size: 1.08rem;
+  line-height: 1.95;
+  color: var(--text-light);
+  white-space: normal;
+}
+.poem-body .stanza + .stanza { margin-top: 2.1em; }
+.poem-body .indent { display: inline-block; padding-left: calc(var(--indent, 0) * 0.5ch); }
+
+/* -- footer -- */
+.post-footer {
+  margin-top: 4.5rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.post-footer a { color: var(--text-faint); text-decoration: none; transition: color 0.3s ease; }
+.post-footer a:hover { color: var(--text); }
+.post-nav { display: flex; gap: 1.4rem; }
+
+/* -- audio: a poem read aloud -- */
+.player {
+  margin: 0 0 3rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.reader.verse .player { flex-direction: row-reverse; }
+
+.player-btn {
+  flex-shrink: 0;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--text-faint);
+  background: none;
+  color: var(--text);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+.player-btn:hover { border-color: var(--text); background: rgba(51,51,51,0.05); }
+.player-btn svg { width: 12px; height: 12px; fill: currentColor; }
+.player-btn .icon-pause { display: none; }
+.player.playing .icon-play { display: none; }
+.player.playing .icon-pause { display: block; }
+
+.player-track {
+  flex: 1;
+  height: 2px;
+  background: var(--rule);
+  position: relative;
+  cursor: pointer;
+}
+.player-track::before {
+  content: '';
+  position: absolute;
+  inset: -9px 0;              /* enlarged hit area, invisible */
+}
+.player-fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0%;
+  background: var(--text);
+  pointer-events: none;
+}
+
+.player-time {
+  flex-shrink: 0;
+  font-size: 0.72rem;
+  font-weight: 300;
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.04em;
+  min-width: 4.2em;
+  text-align: right;
+}
+.player-label {
+  flex-shrink: 0;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+@media (max-width: 768px) {
+  .reader { padding: 2rem 1.5rem 4rem; }
+  .player-label { display: none; }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}} — Nikhil Sinha</title>
+<meta name="description" content="{{EXCERPT}}">
+<meta property="og:title" content="{{TITLE}}">
+<meta property="og:description" content="{{EXCERPT}}">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="{{ISO_DATE}}">
+<link rel="canonical" href="{{CANONICAL}}">
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="stylesheet" href="/assets/post.css">
+</head>
+<body>
+  <article class="reader verse">
+    <a href="{{BACK_HREF}}" class="back-link">&larr; {{BACK_LABEL}}</a>
+
+    <header class="post-header">
+      <h1 class="post-heading">{{TITLE}}</h1>
+      <div class="post-meta">
+        {{STAR}}<span>{{DATE}}</span>
+      </div>
+    </header>
+
+    {{PLAYER}}
+
+    <div class="poem-body">
+{{BODY}}
+    </div>
+
+    <footer class="post-footer">
+      <nav class="post-nav">{{NAV}}</nav>
+      {{MEDIUM}}
+    </footer>
+  </article>
+  <script src="/assets/player.js" defer></script>
+</body>
+</html>

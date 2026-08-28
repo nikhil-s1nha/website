@@ -1,0 +1,71 @@
+/* Shared foundation for every page. Previously duplicated inline in all five pages. */
+
+@font-face {
+  font-family: 'Neue Haas Grotesk';
+  src: local('Neue Haas Grotesk Display Pro'), local('NeueHaasDisplay-Roman'), local('Helvetica Neue'), local('Helvetica');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Neue Haas Grotesk';
+  src: local('Neue Haas Grotesk Display Pro Light'), local('NeueHaasDisplay-Light'), local('Helvetica Neue Light');
+  font-weight: 300;
+}
+@font-face {
+  font-family: 'Neue Haas Grotesk';
+  src: local('Neue Haas Grotesk Display Pro Medium'), local('NeueHaasDisplay-Medium'), local('Helvetica Neue Medium');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'Neue Haas Grotesk';
+  src: local('Neue Haas Grotesk Display Pro Bold'), local('NeueHaasDisplay-Bold'), local('Helvetica Neue Bold');
+  font-weight: 700;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --bg: #D9D9D9;
+  --text: #333333;
+  --text-light: #555555;
+  --text-faint: #888888;
+  --rule: rgba(51, 51, 51, 0.14);
+  --font: 'Neue Haas Grotesk', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 2.5rem 5rem;
+}
+
+.back-link {
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-faint);
+  transition: color 0.3s ease;
+}
+.back-link:hover { color: var(--text); }
+
+@media (max-width: 768px) {
+  .page { padding: 2rem 1.5rem 4rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

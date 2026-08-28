@@ -1,0 +1,44 @@
+---
+title: Comparison
+date: 2026-08-24
+star: false
+medium: https://medium.com/@nikhils1nha/comparison-495ee4188a27
+---
+
+I’m sitting here trying to think about why humans compare the world around us. I’m trying to remember the first time I was taught to compare something. For some reason, my mind jumps to my parents teaching me the different colors or fruits. But that’s differentiating — what is comparison?
+
+I mean comparison with the negative connotation, or I guess my perception has adapted to view it this way. Since I was little, I’ve had a love and hate relationship with comparison as being a twin brother, I’d be constantly compared. It’s actually the reason I have a lot of my eating habits today — being one year old children, the only way my brother and I could impress my parents is how well we ate. So I’d stuff my face quickly to prove I was the better child. But as we grew into different personalities, a lot more comparisons were drawn than just eating. Admittedly, my brother got the short end of the straw. He was constantly questioned as to why he couldn’t solve math worksheets as fast as me, why he couldn’t hit the tennis ball as well as me, or why he wouldn’t make as many friends as me. As for five year old Nikhil, he lived for this comparison. He loved the feeling of being compared to because he mistook that for love. He thought that feeling is what brought himself value.
+
+Like most Bay Area kids, I’ve struggled a lot with self-worth. As I outgrew comparisons with my brother and began being compared to the Bay Area kids around me, I became obsessed with deriving my value through comparisons. While playing tennis, I found myself not trying to be the best tennis player, but rather just better than anybody else playing on the court that day. I remember a wave of relief washing over me as I looked around and realized the people on other courts were worse than me. I remember an ick in the back of my mind when I watched someone better. I also remember my twelve year old self making excuses for why they were better than me. “Oh all they have is tennis.” “I’ll get there when I get older.” “I’m better than they were at my age.” With these thoughts my twelve year old self barely got better two years later. Two years later, I started to question my self-worth exponentially.
+
+After fourteen years of thinking I knew who I was, I came into high school not as Nikhil Sinha, but rather a plethora of questions trying to find him. Or mainly, one question, “Am I better than everyone here?” In each class, each tennis practice, each club meeting, and each conversation, my mind would be subconsciously compiling evidence about the people around me to answer this question. Safe to say my context limit was being reached.
+
+I still remember clearly reverberating the same excuses I had made while playing tennis. That no matter what, I was better than everyone.
+
+You know those characters in movies you start hating so much, but that means the actor is doing a good job. Writing this, that’s who my fourteen year old self feels like. The most annoying, narcissistic, and discompassoinate person I’ve ever met.
+
+In the last four years a lot has changed. I’ve lost a lot of good people to that question of comparison I was constantly asking in my head. People better than me. People who perhaps if instead of analyzing them with this question, I had comforted them in their struggles, would be different today. Comparison. I’ve lost a lot because of it.
+
+I’m not going to pretend that four years later it’s completely left my life. Honestly, one of the worst waves of comparison came back this year in March. The emotions of those moments illustrated that a large part of my identity was still that twelve year old self who derived value from the things around him. The thoughts splitting open my mind today show me I still have a long way to go.
+
+I can’t stop thinking about comparison now. My mind keeps jumping to how in my grad party, each speech indirectly compared me and my brother both in structure and thought. I keep thinking about how my brother’s smile drops as my dad’s first instinct is to show his new revelation to me before him. Each time I walk past the street, I catch my mind looking at the people around me, wondering how they could live with such different priorities. Opening social media, I find myself feeling lost as the people around me seem to be faring off so much better.
+
+I think I’ve mistakenly thought that I had beaten comparison. It seems that I’m fighting it now more than ever. I started writing this blog because I thought I could stop that question from continuing to reverberate in my head. It’s only now that I realize that comparison a problem much deeper. And it’s only now that I realize that for the last six months, I’ve been solving it with a new bandaid each month.
+
+“Everything happens for a reason.” “They don’t want to see me in four years.” “I’m the underdog now.”
+
+Each time that I think that I’ve beaten comparison it comes back to leave me with more questions. More stress, more fear. I don’t want to bandaid or ignore this problem anymore, I think it’s time to solve it for real.
+
+I’m leaving this blog unfinished — a testament for the next problem I need to solve. Because I know Nikhil Sinha is his best when he is free, free of doubts, questions, and comparison. It’s time to go find him.
+
+— — — — — — — — — — — — — — — — — — — — — — — — — — — — — — — —
+
+Hey it’s Nikhil from two hours since then. I hit the gym, ate some food (a lot actually), and I now have a lot more thoughts.
+
+When I think about the people I compare myself to negatively, it’s a very select population of people. Even though I play basketball, I don’t feel jealous of NBA prospects who are five inches taller than me. Even though I write poetry, I don’t feel any anguish reading poetry of poets who write more elegantly than me. Even though I’m an engineer, I don’t feel that ick watching the upperclassman above me succeed.
+
+I’ve realized that all the negative associations stemming from comparison are against people who are in positions I thought I could be in. Positions I thought I should be in. I compare myself to them because I view them as versions of me that could have been. The stronger Nikhil. The smarter Nikhil. The more disciplined Nikhil.
+
+Looking at these people show the Nikhil of today all of his failures. All of his flaws and ultimately insecurities. These people are reminders of what could’ve been. Who Nikhil Sinha should have been.
+
+For the most part this blog is still unfinished, but I think I have a clearer understanding of the problem I’m tackling. It was never about not feeling a certain way towards people. Rather, it’s about becoming a version of Nikhil Sinha who never has to wonder what he could have been.

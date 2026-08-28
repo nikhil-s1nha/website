@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thoughts — Nikhil Sinha</title>
+<meta name="description" content="Essays and poems by Nikhil Sinha.">
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="stylesheet" href="/assets/index.css">
+</head>
+<body>
+  <div class="page">
+    <header class="page-header">
+      <a href="/" class="back-link">&larr; Back</a>
+      <div class="page-title-row">
+        <div class="tab-nav-left">
+          <h1 class="page-title active" data-tab="thoughts" role="tab" tabindex="0" aria-selected="true">Thoughts</h1>
+          <a id="medium-thoughts" href="https://medium.com/@nikhils1nha" target="_blank" rel="noopener" class="medium-link" aria-label="Medium">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+          </a>
+        </div>
+        <div class="tab-nav-right">
+          <a id="medium-poetry" href="https://medium.com/@nikhils1nha" target="_blank" rel="noopener" class="medium-link hidden" aria-label="Medium">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+          </a>
+          <h1 class="page-title inactive" data-tab="poetry" role="tab" tabindex="0" aria-selected="false">Poetry</h1>
+        </div>
+      </div>
+      <div class="legend-row">
+        <p class="legend" id="legend-thoughts"><span class="legend-star">&#9733;</span> favorite stories</p>
+        <p class="legend hidden" id="legend-poetry"><span class="legend-star">&#9733;</span> favorite poems</p>
+      </div>
+    </header>
+
+    <div class="tab-panel" id="panel-thoughts">
+      <div class="post-list">
+{{THOUGHTS_ITEMS}}
+      </div>
+    </div>
+
+    <div class="tab-panel" id="panel-poetry" style="display:none;">
+      <div class="post-list">
+{{POETRY_ITEMS}}
+      </div>
+    </div>
+  </div>
+  <script src="/assets/tabs.js" defer></script>
+</body>
+</html>
