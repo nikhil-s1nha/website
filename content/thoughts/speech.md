@@ -1,7 +1,6 @@
 ---
 title: Speech
 date: 2026-08-09
-star: false
 medium: https://medium.com/@nikhils1nha/speech-8b5c2c2bc76d
 ---
 

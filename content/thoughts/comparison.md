@@ -1,7 +1,6 @@
 ---
 title: Comparison
 date: 2026-08-24
-star: false
 medium: https://medium.com/@nikhils1nha/comparison-495ee4188a27
 ---
 

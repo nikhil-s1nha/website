@@ -1,7 +1,6 @@
 ---
 title: Losing
 date: 2026-08-26
-star: false
 medium: https://medium.com/@nikhils1nha/losing-69885cbe59be
 ---
 

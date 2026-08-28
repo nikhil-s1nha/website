@@ -16,7 +16,6 @@ The filename is the URL. `content/thoughts/losing.md` becomes `/thoughts/losing`
 ---
 title: Losing
 date: 2026-08-26
-star: false
 medium: https://medium.com/@nikhils1nha/losing-69885cbe59be
 ---
 
@@ -27,7 +26,6 @@ Body text starts here.
 |----------|----------|---------------------------------------------------------------------|
 | `title`  | yes      | Heading on the page and the label in the index                       |
 | `date`   | yes      | `YYYY-MM-DD`. Sorts the index, newest first                          |
-| `star`   | no       | `true` marks it a favorite, same star as before                      |
 | `medium` | no       | Adds an "Also on Medium" link in the footer                          |
 | `audio`  | poems    | Path to a recording, e.g. `/audio/poetry/fate.m4a`                   |
 

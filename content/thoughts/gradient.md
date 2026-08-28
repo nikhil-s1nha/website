@@ -1,7 +1,6 @@
 ---
 title: Gradient
 date: 2026-04-06
-star: false
 medium: https://medium.com/@nikhils1nha/gradient-822069051386
 ---
 

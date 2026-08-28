@@ -1,7 +1,6 @@
 ---
 title: Odysseus
 date: 2026-08-07
-star: false
 medium: https://medium.com/@nikhils1nha/odysseus-9e8f85f25624
 ---
 

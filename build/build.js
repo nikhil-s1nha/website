@@ -50,8 +50,6 @@ const excerpt = (html, n = 155) => {
   return esc(t.length <= n ? t : t.slice(0, t.lastIndexOf(' ', n)) + '…');
 };
 
-const readTime = html => Math.max(1, Math.round(plain(html).split(/\s+/).length / 220)) + ' min read';
-
 const fill = (tpl, vars) =>
   tpl.replace(/\{\{([A-Z_]+)\}\}/g, (m, k) => (k in vars ? String(vars[k]) : ''));
 
@@ -123,8 +121,6 @@ function buildPages(posts, templates) {
       BODY: bodyHtml,
       DATE: fmtDate(meta.date),
       ISO_DATE: meta.date,
-      STAR: meta.star ? '<span class="star">&#9733;</span>' : '',
-      READTIME: readTime(bodyHtml),
       EXCERPT: excerpt(bodyHtml),
       CANONICAL: SITE + post.url,
       BACK_HREF: cfg.back,
@@ -132,7 +128,7 @@ function buildPages(posts, templates) {
       NAV: nav,
       PLAYER: player,
       MEDIUM: meta.medium
-        ? '<a href="' + meta.medium + '" target="_blank" rel="noopener">Also on Medium</a>'
+        ? '<a class="medium-link" href="' + meta.medium + '" target="_blank" rel="noopener">Medium</a>'
         : '',
     });
 
@@ -154,7 +150,6 @@ function buildIndex(thoughts, poetry, templates) {
     const delay = Math.min(i * 0.05, 0.7).toFixed(2);
     const mark = (p.kind === 'poetry' && p.meta.audio) ? '<span class="post-audio-mark">&#9834;</span>' : '';
     return '        <a href="' + href + '"' + attrs + ' class="post-item" style="--d:' + delay + 's">\n' +
-           '          <span class="post-star">' + (p.meta.star ? '&#9733;' : '') + '</span>\n' +
            '          <h2 class="post-title">' + esc(p.meta.title) + mark + '</h2>\n' +
            '          <p class="post-date">' + fmtDate(p.meta.date) + '</p>\n' +
            '        </a>';

@@ -1,7 +1,6 @@
 ---
 title: Hope—Finding Rockets
 date: 2026-04-01
-star: false
 medium: https://medium.com/@nikhils1nha/hope-finding-rockets-c7b9ae9e9ac8
 ---
 

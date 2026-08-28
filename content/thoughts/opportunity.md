@@ -1,7 +1,6 @@
 ---
 title: Opportunity
 date: 2025-11-09
-star: false
 medium: https://medium.com/@nikhils1nha/opportunity-846fdbe2b17b
 ---
 

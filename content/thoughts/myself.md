@@ -1,7 +1,6 @@
 ---
 title: Myself
 date: 2026-08-12
-star: false
 medium: https://medium.com/@nikhils1nha/myself-5badb5f0e3d8
 ---
 

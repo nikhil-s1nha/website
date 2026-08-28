@@ -1,7 +1,6 @@
 ---
 title: Belonging
 date: 2026-04-18
-star: false
 medium: https://medium.com/@nikhils1nha/belonging-72a7d3bff7aa
 # audio: /audio/poetry/belonging.m4a
 ---

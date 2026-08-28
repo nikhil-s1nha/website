@@ -1,7 +1,6 @@
 ---
 title: Goodbye
 date: 2026-08-17
-star: false
 medium: https://medium.com/@nikhils1nha/goodbye-5711a433e07f
 ---
 

@@ -1,7 +1,6 @@
 ---
 title: Love
 date: 2026-08-22
-star: false
 medium: https://medium.com/@nikhils1nha/love-65f472965eb7
 ---
 

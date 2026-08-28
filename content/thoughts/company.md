@@ -1,7 +1,6 @@
 ---
 title: Company
 date: 2026-07-29
-star: false
 medium: https://medium.com/@nikhils1nha/company-a4ce0c5d2def
 ---
 

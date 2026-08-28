@@ -1,7 +1,6 @@
 ---
 title: Skeletons
 date: 2026-08-03
-star: false
 medium: https://medium.com/@nikhils1nha/skeletons-069ec48d541c
 ---
 

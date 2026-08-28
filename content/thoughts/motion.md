@@ -1,7 +1,6 @@
 ---
 title: Motion
 date: 2026-08-27
-star: false
 medium: https://medium.com/@nikhils1nha/motion-d4c7ba68fea1
 ---
 

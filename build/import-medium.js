@@ -143,7 +143,6 @@ function looksLikeVerse(html) {
     const fm = ['---',
       'title: ' + (/[:#]/.test(title) ? JSON.stringify(title) : title),
       'date: ' + isoDate(pub),
-      'star: false',
       'medium: ' + link.split('?')[0],
       ...(verse ? ['# audio: /audio/poetry/' + slug + '.m4a'] : []),
       '---', '', body, ''].join('\n');

@@ -1,7 +1,6 @@
 ---
 title: Stop Accepting
 date: 2026-04-25
-star: false
 medium: https://medium.com/@nikhils1nha/accepting-e72b8cecf2b1
 ---
 
