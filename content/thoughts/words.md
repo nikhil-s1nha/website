@@ -4,4 +4,20 @@ date: 2026-06-14
 medium: https://medium.com/@nikhils1nha/words-9257627b7208
 ---
 
-<!-- Paste the text here. Until then this stays a Medium link on the index. -->
+As I press my spacebar to type each word in this article the gravity of each word speaks magnitudes to me. I remember that one fat insult that has stuck with me since fifth grade. That compliment about my shirt in the morning that made my day. The song lyrics of “I saw your face while I was out” bouncing around my head. In my perspective, words quite literally carry their weight in gold.
+
+Because in some way I think that’s where we derive happiness. I look at my parents for instance. Despite being able to buy Coach purses, a BMW, or Tiffany jewels, I’ve seen them at their happiest when someone says “this party was really fun.” “Thank you for letting me stay.” Obviously they say it in Hindi but the impact of the words is the same. They bring the widest smiles to my parents’ faces. The type of smile that has them talking about those words for the next three conversations.
+
+So that brings me to my point about words. Powerful.
+
+But today I want to talk about another power that I notice they have. Actually I think a better word to describe it is satisfaction. I’ve noticed that I hate to talk about the things I’m building. I despise telling people about my dreams. Despite people saying that speaking something manifests it, something about telling my deepest desires to another person convolutes my eagerness to achieve it. To explain this further, here’s my thought process.
+
+The easiest way to understand what I’m saying is by reenacting it yourself. Think about your biggest dream. Got it? Now go find the closest person to you and say “I am going to \[insert dream\].” After you say this, sink in the moment. Memorize the reaction of the person in front of you. If there anything like the people in my life there’s two reactions:
+
+Firstly, the hater. This is usually people not very close to you or perhaps in that semi-friend range. Right after you say that line they’re going to acknowledge your dream slightly. And then they’ll start to try to poke holes in it. They will say, are you sure it’s possible? Do you have enough time? Isn’t it easier to do it this way? Or the worst of it all, they’ll ignore your dream and tell them how theirs is better. All of which, subconsciously, changes how you view your own dream. You may try to change your dream to better fit the parameters they mentioned or you’ll pivot completely. Just by saying a few words you’ve lost who you are. That’s the first type.
+
+The second type is the supporter, which in my eyes is the hardest to understand. Think about the closest person after your family or your best friends or your partner. For some people even the people listed above are fallible. And it’s not their fault. It’s the fault of dreams.
+
+See, humans inherently like to brag. It’s a fact. As much as I love to be humble, there is a part of me that likes the attention and the spotlight. When you brag about dreams or talk about them as if you’ve completed them, I believe it takes away from the eagerness to achieve them. Because without completing those dreams, you’re getting something out of it. The reaction from you bragging. And just like the first type, this changes how you view your own dream. No longer are you fighting tooth and nail everyday to make your dream a reality, you half-assed it into reality for a moment of glory while bragging. Your dream becomes more tangible and less of a dream.
+
+That’s why those words “I am going to \[insert dream\]” are so dangerous to me. Saying them to others changes my dreams. They change who I am. Each word we say matters, and it’s important to protect our dreams.

@@ -26,9 +26,9 @@
   white-space: nowrap;
 }
 
-/* verse mirrors the poetry axis from the index: title hangs right,
-   which puts its date out on the opposite edge */
-.reader.verse .post-titleline { flex-direction: row-reverse; }
+/* Poem pages read left like the essays. The mirrored axis stays on the index,
+   where it separates the two lists; carried onto a full-length poem it left the
+   title stranded to the right of the verse with nothing beneath it. */
 
 /* -- prose --
    Body copy stays on the site's own grotesk so the reading pages match
@@ -123,7 +123,6 @@
   border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule);
 }
-.reader.verse .player { flex-direction: row-reverse; }
 
 .player-btn {
   flex-shrink: 0;

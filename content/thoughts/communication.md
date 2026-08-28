@@ -4,4 +4,16 @@ date: 2025-08-14
 medium: https://medium.com/@nikhils1nha/communication-bacd069a6a75
 ---
 
-<!-- Paste the text here. Until then this stays a Medium link on the index. -->
+![](https://cdn-images-1.medium.com/max/800/1*iGkw5PyWUaRiAQrIKeLVgw.png)
+
+Talking is something we all take for granted. The ability to precisely convey our thoughts and emotions. Our natural ability to make relationships.
+
+Today, my friends and I spent over an hour resolving a check at our local restaurant. The problem? Creating a mutual understanding between both parties. After splitting the bill, some cards getting declined, and phone calls to our banks, there was confusion around the status of the bill.
+
+The lesson of communication I garnered from this experience was from the difficulty of resolving this issue. As our cashier scrambled in broken English, we attempted to explain the situation to no avail. Relentlessly she would insist on paying once more, despite our confirmation that we had paid. It was only until we got a mediator, that we were able to resolve the issue.
+
+The lesson? Have a translater. It makes me reflect on why skills require us to take language courses, a mechanism for opening more doors in our lives. But it’s interesting how despite everybody realizing the borders languages create, that little attempt to break it. Rather, we, or maybe I, expect English to be universal, breaking it down to its verbs and nouns when speaking to immigrants.
+
+But another thought that popped into my head was if we realize the problem that language is, why isn’t there a common, proposed solution to it. For instance, what if we all decided that from now onwards, the only language that would be taught is “x”. Obviously enforcing it is a whole other ballgame, but such an attempt seems justified.
+
+Yet, I also realize the impact language has on culture. When meeting someone who knows the same slang as me, whether in English or Hindi, a new connection forms, almost as if we’re family. So on one hand, language divides us, but another unites us. Just an interesting idea that popped in my head!
