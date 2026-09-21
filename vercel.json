@@ -1,3 +1,21 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/cv", "destination": "/cv/Nikhil-Sinha-Resume.pdf" }
+  ],
+  "headers": [
+    {
+      "source": "/cv",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" },
+        { "key": "Content-Disposition", "value": "inline; filename=\"Nikhil-Sinha-Resume.pdf\"" }
+      ]
+    },
+    {
+      "source": "/cv/(.*)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex, nofollow" }
+      ]
+    }
+  ]
 }
