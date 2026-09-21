@@ -9,7 +9,7 @@
 <meta name="robots" content="noindex, nofollow">
 <link rel="stylesheet" href="/assets/base.css">
 <style>
-  .cv-header { margin-bottom: 2.6rem; }
+  .cv-header { margin-bottom: 2rem; }
   .cv-titlerow {
     margin-top: 1.5rem;
     display: flex;
@@ -38,88 +38,30 @@
   }
   .cv-download:hover { color: var(--text); border-color: var(--text-faint); }
 
-  .cv-contact {
-    margin-top: 0.7rem;
-    font-size: 0.88rem;
+  /* The document itself: the PDF rendered to canvas, so the LaTeX typesetting
+     is preserved exactly. Pages are painted by pdf.js at device resolution and
+     re-painted on resize, which keeps the type crisp instead of upscaling a
+     bitmap. Sheets sit on the site's grey like paper on a desk. */
+  .cv-doc { display: flex; flex-direction: column; gap: 1.5rem; }
+  .cv-sheet {
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.10), 0 8px 28px rgba(0,0,0,0.08);
+    width: 100%;
+    overflow: hidden;
+  }
+  .cv-sheet canvas { display: block; width: 100%; height: auto; }
+
+  .cv-status {
+    padding: 3rem 1.5rem;
+    text-align: center;
+    font-size: 0.85rem;
     font-weight: 300;
-    color: var(--text-light);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem 0.9rem;
-  }
-  .cv-contact a { color: inherit; text-decoration: underline; text-underline-offset: 0.18em; text-decoration-thickness: 1px; text-decoration-color: var(--rule); transition: text-decoration-color 0.25s ease; }
-  .cv-contact a:hover { text-decoration-color: var(--text); }
-
-  /* -- sections -- */
-  .cv-section { margin-top: 2.8rem; }
-  .cv-section-title {
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--text-faint);
-    padding-bottom: 0.6rem;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  .cv-entry { margin-top: 1.7rem; }
-  .cv-line {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 0.6rem 1.2rem;
-    flex-wrap: wrap;
-  }
-  .cv-role { font-size: 1.02rem; font-weight: 500; color: var(--text); line-height: 1.3; }
-  .cv-org  { font-size: 0.95rem; font-weight: 300; color: var(--text-light); line-height: 1.4; }
-  .cv-meta {
-    font-size: 0.82rem;
-    font-weight: 400;
-    color: var(--text-faint);
-    white-space: nowrap;
-    font-variant-numeric: tabular-nums;
-  }
-  .cv-sub { margin-top: 0.15rem; }
-
-  .cv-entry ul {
-    margin-top: 0.7rem;
-    padding-left: 1.1rem;
-    list-style: none;
-  }
-  .cv-entry li {
-    position: relative;
-    font-size: 0.93rem;
-    font-weight: 300;
-    line-height: 1.6;
-    color: var(--text-light);
-    text-wrap: pretty;
-  }
-  .cv-entry li + li { margin-top: 0.42rem; }
-  .cv-entry li::before {
-    content: '';
-    position: absolute;
-    left: -1.1rem;
-    top: 0.62em;
-    width: 4px; height: 4px;
-    background: var(--text-faint);
-    border-radius: 50%;
-  }
-
-  /* -- skills -- */
-  .cv-skills { margin-top: 1.4rem; display: grid; gap: 0.7rem; }
-  .cv-skill { display: grid; grid-template-columns: 11.5rem 1fr; gap: 0.3rem 1rem; align-items: baseline; }
-  .cv-skill dt {
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
     color: var(--text-faint);
   }
-  .cv-skill dd { font-size: 0.93rem; font-weight: 300; line-height: 1.55; color: var(--text-light); }
+  .cv-status a { color: var(--text); text-underline-offset: 0.18em; }
 
-  /* -- footer -- */
   .cv-footer {
-    margin-top: 4rem;
+    margin-top: 3rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--rule);
     display: flex;
@@ -136,19 +78,14 @@
   .cv-footer a { color: var(--text-faint); text-decoration: none; transition: color 0.3s ease; }
   .cv-footer a:hover { color: var(--text); }
 
-  @media (max-width: 640px) {
-    .cv-meta { white-space: normal; }
-    .cv-skill { grid-template-columns: 1fr; }
-  }
-
-  /* Cmd+P should produce a clean copy, not a screenshot of the site. */
+  /* Printing the page should print the CV, not a screenshot of the site. */
   @media print {
-    :root { --bg: #fff; --text: #000; --text-light: #222; --text-faint: #555; --rule: rgba(0,0,0,0.2); }
     body { background: #fff; }
     .page { padding: 0; max-width: none; }
-    .back-link, .cv-download, .cv-footer { display: none; }
-    .cv-section { margin-top: 1.5rem; break-inside: avoid; }
-    .cv-entry { break-inside: avoid; }
+    .back-link, .cv-titlerow, .cv-footer { display: none; }
+    .cv-header { margin: 0; }
+    .cv-doc { gap: 0; }
+    .cv-sheet { box-shadow: none; }
   }
 </style>
 </head>
@@ -160,184 +97,92 @@
         <h1 class="cv-title">Nikhil Sinha</h1>
         <a href="/cv/Nikhil-Sinha-Resume.pdf" class="cv-download" download>Download PDF</a>
       </div>
-      <div class="cv-contact">
-        <a href="tel:+15106027858">+1 510-602-7858</a>
-        <a href="mailto:nikhilsinha@g.ucla.edu">nikhilsinha@g.ucla.edu</a>
-        <a href="https://www.linkedin.com/in/nikhil-s1nha" target="_blank" rel="noopener">linkedin.com/in/nikhil-s1nha</a>
-        <a href="https://www.github.com/nikhil-s1nha" target="_blank" rel="noopener">github.com/nikhil-s1nha</a>
-      </div>
     </header>
 
-    <section class="cv-section">
-      <h2 class="cv-section-title">Education</h2>
-
-      <div class="cv-entry">
-        <div class="cv-line">
-          <div class="cv-role">University of California, Los Angeles</div>
-          <div class="cv-meta">Los Angeles, CA</div>
-        </div>
-        <div class="cv-line cv-sub">
-          <div class="cv-org">B.S. in Computer Science and Engineering</div>
-          <div class="cv-meta">Sept. 2026 &ndash; Jun. 2030</div>
-        </div>
-      </div>
-
-      <div class="cv-entry">
-        <div class="cv-line">
-          <div class="cv-role">American High School</div>
-          <div class="cv-meta">Fremont, CA</div>
-        </div>
-        <div class="cv-line cv-sub">
-          <div class="cv-org">GPA: 3.98 UW / 4.57 W</div>
-          <div class="cv-meta">Aug. 2022 &ndash; May 2026</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cv-section">
-      <h2 class="cv-section-title">Experience</h2>
-
-      <div class="cv-entry">
-        <div class="cv-line">
-          <div class="cv-role">Founder and Team Captain</div>
-          <div class="cv-meta">May 2024 &ndash; Apr. 2026</div>
-        </div>
-        <div class="cv-line cv-sub">
-          <div class="cv-org">Space Pickles Rocketry</div>
-          <div class="cv-meta">Fremont, CA</div>
-        </div>
-        <ul>
-          <li>Directed 28 members to launch 50+ rockets while competing in the American Rocketry Challenge (ARC).</li>
-          <li>Developed full-stack internal inventory platform with React, PostgreSQL, and AWS for component tracking.</li>
-          <li>Built sensor fusion and telemetry pipelines for state estimation with Kalman filtering; 11% apogee error reduction.</li>
-          <li>Created trajectory simulation with MATLAB and nonlinear motion control algorithms in Python using CasADi.</li>
-        </ul>
-      </div>
-
-      <div class="cv-entry">
-        <div class="cv-line">
-          <div class="cv-role">Software Vice Captain and Strategy Lead</div>
-          <div class="cv-meta">Jun. 2024 &ndash; May 2026</div>
-        </div>
-        <div class="cv-line cv-sub">
-          <div class="cv-org">FIRST Robotics Competition (FRC) 6036 Peninsula Robotics</div>
-          <div class="cv-meta">Palo Alto, CA</div>
-        </div>
-        <ul>
-          <li>Reached 49/3700+ teams globally. Led archetype decisions, game analysis, and control system engineering.</li>
-          <li>Developed inverse kinematics and nonlinear trajectory optimization solutions for 24% improved placement speed.</li>
-          <li>Designed internal operations platform for team management with Node.js, Electron, and MongoDB.</li>
-          <li>Contributed to camera and vision processing stack for AprilTag and object detection with OpenCV and YOLOv8.</li>
-        </ul>
-      </div>
-
-      <div class="cv-entry">
-        <div class="cv-line">
-          <div class="cv-role">Founder and Developer</div>
-          <div class="cv-meta">Oct. 2023 &ndash; Present</div>
-        </div>
-        <div class="cv-line cv-sub">
-          <div class="cv-org">iDENTify</div>
-          <div class="cv-meta">Fremont, CA</div>
-        </div>
-        <ul>
-          <li>Designed phone attachment in Onshape and AI-powered iOS app in Swift for remote oral healthcare monitoring.</li>
-          <li>Trained PyTorch model detecting caries and gingivitis, achieving 89.7% accuracy annotating 4000+ images.</li>
-          <li>Currently integrating with VELMENI, raised 2K+ for POC, and working towards FDA approval.</li>
-        </ul>
-      </div>
-
-      <div class="cv-entry">
-        <div class="cv-line">
-          <div class="cv-role">Software Engineering Intern</div>
-          <div class="cv-meta">Jun. 2024 &ndash; Nov. 2024</div>
-        </div>
-        <div class="cv-line cv-sub">
-          <div class="cv-org">TeachShare</div>
-          <div class="cv-meta">Berkeley, CA</div>
-        </div>
-        <ul>
-          <li>Built Chrome extension using Google Apps Script to generate worksheets and curriculums from user prompts.</li>
-          <li>Worked on backend development employing Lexile-based text complexity analysis models and FastAPI.</li>
-          <li>Engineered marketing automated workflows with REST API integrations, scaling platform to 20K+ users globally.</li>
-        </ul>
-      </div>
-
-      <div class="cv-entry">
-        <div class="cv-line">
-          <div class="cv-role">Research Lead</div>
-          <div class="cv-meta">Aug. 2022 &ndash; Nov. 2025</div>
-        </div>
-        <div class="cv-line cv-sub">
-          <div class="cv-org">Aspiring Scholars Directed Research Program</div>
-          <div class="cv-meta">Fremont, CA</div>
-        </div>
-        <ul>
-          <li>Presented transformer Alzheimer's model with longitudinal MRI tokens in PyTorch; 88% accuracy at SCCUR.</li>
-          <li>Designed Dockerized AWS EC2 pipeline parallelizing preprocessing with FreeSurfer over 1,000+ MRI scans.</li>
-          <li>Built autonomous drone system for rescue route optimization using SLAM, LiDAR, A*, and Dijkstra's algorithm.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="cv-section">
-      <h2 class="cv-section-title">Projects</h2>
-
-      <div class="cv-entry">
-        <div class="cv-line">
-          <div class="cv-role">Bundles</div>
-          <div class="cv-meta">Jun. 2026 &ndash; Present</div>
-        </div>
-        <div class="cv-line cv-sub">
-          <div class="cv-org">JavaScript, Supabase, Swift</div>
-        </div>
-        <ul>
-          <li>Developed iOS widget app in Expo and Supabase with real-time sync and APN push delivery for distant partners.</li>
-          <li>Designed backend schema with Supabase with RLS and Realtime subscriptions for pairing and media delivery.</li>
-        </ul>
-      </div>
-
-      <div class="cv-entry">
-        <div class="cv-line">
-          <div class="cv-role">6-DOF Arm</div>
-          <div class="cv-meta">Sept. 2026 &ndash; Present</div>
-        </div>
-        <div class="cv-line cv-sub">
-          <div class="cv-org">Python, OpenCV, NumPy, pytest, MediaPipe</div>
-        </div>
-        <ul>
-          <li>Built control stack for COTS 5-DOF arm in Python with URDF-based IK to play handslap; sim-tested in CI.</li>
-          <li>Brought up Opi5s for MediaPipe detection; reduced latency by 200ms with threaded loops and UDP across boards.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="cv-section">
-      <h2 class="cv-section-title">Technical Skills</h2>
-      <dl class="cv-skills">
-        <div class="cv-skill">
-          <dt>Languages</dt>
-          <dd>Python, C++, Java, JavaScript, HTML/CSS, TypeScript, Swift</dd>
-        </div>
-        <div class="cv-skill">
-          <dt>Frameworks</dt>
-          <dd>React, Node.js, Flask, Supabase, ROS, PyTorch, TensorFlow, YOLO, FastAPI</dd>
-        </div>
-        <div class="cv-skill">
-          <dt>Developer Tools</dt>
-          <dd>Git, Docker, AWS, Google Cloud Platform, VS Code, Visual Studio, PyCharm, IntelliJ</dd>
-        </div>
-        <div class="cv-skill">
-          <dt>Libraries</dt>
-          <dd>pandas, NumPy, SciPy, OpenCV, MATLAB, CasADi</dd>
-        </div>
-      </dl>
-    </section>
+    <div class="cv-doc" id="doc">
+      <p class="cv-status" id="status">Loading&hellip;</p>
+      <noscript>
+        <p class="cv-status">
+          This page renders the CV inline with JavaScript.
+          <a href="/cv/Nikhil-Sinha-Resume.pdf">Open the PDF directly.</a>
+        </p>
+      </noscript>
+    </div>
 
     <footer class="cv-footer">
       <a href="/">&larr; Back to home</a>
       <a href="/cv/Nikhil-Sinha-Resume.pdf" download>Download PDF</a>
     </footer>
   </div>
+
+  <script type="module">
+    const PDF = '/cv/Nikhil-Sinha-Resume.pdf';
+    const CDN = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38';
+    const doc = document.getElementById('doc');
+    const status = document.getElementById('status');
+
+    /* If pdf.js can't load or render, fall back to the browser's own PDF viewer
+       rather than leaving a blank page. */
+    function fallback() {
+      doc.innerHTML =
+        '<object class="cv-sheet" data="' + PDF + '" type="application/pdf" style="height:80vh">' +
+          '<p class="cv-status">Your browser can\'t display the CV inline. ' +
+          '<a href="' + PDF + '">Open the PDF</a>.</p>' +
+        '</object>';
+    }
+
+    try {
+      const pdfjs = await import(CDN + '/pdf.min.mjs');
+      pdfjs.GlobalWorkerOptions.workerSrc = CDN + '/pdf.worker.min.mjs';
+
+      const pdf = await pdfjs.getDocument(PDF).promise;
+      status.remove();
+
+      // one sheet per page, so a two-page CV works without changing anything here
+      const sheets = [];
+      for (let n = 1; n <= pdf.numPages; n++) {
+        const page = await pdf.getPage(n);
+        const base = page.getViewport({ scale: 1 });
+        const sheet = document.createElement('div');
+        sheet.className = 'cv-sheet';
+        sheet.style.aspectRatio = base.width + ' / ' + base.height;  // reserve space before paint
+        const canvas = document.createElement('canvas');
+        sheet.appendChild(canvas);
+        doc.appendChild(sheet);
+        sheets.push({ page, base, sheet, canvas, task: null });
+      }
+
+      function paint() {
+        for (const s of sheets) {
+          const cssWidth = s.sheet.clientWidth;
+          if (!cssWidth) continue;
+          // cap DPR so a 3x phone screen doesn't allocate a needlessly huge canvas
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          const viewport = s.page.getViewport({ scale: (cssWidth / s.base.width) * dpr });
+
+          if (s.task) s.task.cancel();          // drop an in-flight paint from a previous size
+          s.canvas.width = Math.floor(viewport.width);
+          s.canvas.height = Math.floor(viewport.height);
+          s.task = s.page.render({ canvasContext: s.canvas.getContext('2d'), viewport });
+          s.task.promise.catch(() => {});       // cancellation rejects; not an error
+        }
+      }
+
+      paint();
+
+      // repaint at the new width, but only once the resize settles
+      let t;
+      let last = window.innerWidth;
+      addEventListener('resize', () => {
+        if (window.innerWidth === last) return;  // ignore mobile URL-bar height changes
+        last = window.innerWidth;
+        clearTimeout(t);
+        t = setTimeout(paint, 180);
+      });
+    } catch (err) {
+      console.error('inline CV render failed:', err);
+      fallback();
+    }
+  </script>
 </body>
 </html>
