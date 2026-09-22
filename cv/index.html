@@ -84,6 +84,13 @@
 </style>
 </head>
 <body>
+  <script>
+    // Marks this browser as having seen the CV, so the homepage nav can quietly
+    // offer a way back in. Never written to the page's own HTML - only a browser
+    // that actually opened this link ever gets the flag, so it stays out of the
+    // static markup a random visitor or crawler would see.
+    try { localStorage.setItem('ns-cv-seen', '1'); } catch (e) {}
+  </script>
   <div class="page">
     <header class="cv-header">
       <a href="/" class="back-link">&larr; Back</a>

@@ -372,5 +372,22 @@
       cellState[cellIdx] = nextIdx;
     }, 1500);
   </script>
+  <script>
+    // The CV lives at /cv but is deliberately unlinked from the site - nobody
+    // stumbles onto it from here. The one exception: a browser that has already
+    // opened that link gets a quiet way back in, so the CV isn't a dead end.
+    // No href for it exists anywhere in this page's own markup; it's added to
+    // the DOM only when the flag from cv/index.html is present.
+    try {
+      if (localStorage.getItem('ns-cv-seen')) {
+        const nav = document.querySelector('.nav');
+        const socials = document.querySelector('.socials');
+        const cvLink = document.createElement('a');
+        cvLink.href = '/cv';
+        cvLink.textContent = 'CV';
+        nav.insertBefore(cvLink, socials);
+      }
+    } catch (e) {}
+  </script>
 </body>
 </html>
