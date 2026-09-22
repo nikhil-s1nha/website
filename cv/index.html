@@ -9,20 +9,15 @@
 <meta name="robots" content="noindex, nofollow">
 <link rel="stylesheet" href="/assets/base.css">
 <style>
-  .cv-header { margin-bottom: 2rem; }
-  .cv-titlerow {
-    margin-top: 1.5rem;
+  /* The sheet below carries the name already, so the header is just the two
+     controls sharing one line. */
+  .cv-header {
+    margin-bottom: 1.6rem;
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
     gap: 1rem;
     flex-wrap: wrap;
-  }
-  .cv-title {
-    font-size: clamp(1.4rem, 2.5vw, 1.8rem);
-    font-weight: 400;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
   }
   .cv-download {
     font-size: 0.75rem;
@@ -82,8 +77,7 @@
   @media print {
     body { background: #fff; }
     .page { padding: 0; max-width: none; }
-    .back-link, .cv-titlerow, .cv-footer { display: none; }
-    .cv-header { margin: 0; }
+    .cv-header, .cv-footer { display: none; }
     .cv-doc { gap: 0; }
     .cv-sheet { box-shadow: none; }
   }
@@ -93,10 +87,7 @@
   <div class="page">
     <header class="cv-header">
       <a href="/" class="back-link">&larr; Back</a>
-      <div class="cv-titlerow">
-        <h1 class="cv-title">Nikhil Sinha</h1>
-        <a href="/cv/Nikhil-Sinha-Resume.pdf" class="cv-download" download>Download PDF</a>
-      </div>
+      <a href="/cv/Nikhil-Sinha-Resume.pdf" class="cv-download" download>Download PDF</a>
     </header>
 
     <div class="cv-doc" id="doc">
