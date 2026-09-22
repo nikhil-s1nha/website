@@ -214,6 +214,25 @@
     from { opacity: 0; transform: translateY(8px); }
     to   { opacity: 1; transform: translateY(0); }
   }
+  /* ── Return-to-CV button ──
+     Only ever appears for a browser that has already opened /cv; see the
+     script near the end of body. Sits below everything else on the page. */
+  .cv-return {
+    display: block;
+    width: max-content;
+    margin: 2.2rem auto 0;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--text-faint);
+    border: 1px solid rgba(51, 51, 51, 0.16);
+    padding: 0.55rem 1.3rem;
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+  .cv-return:hover { color: var(--text); border-color: var(--text-faint); }
+
   /* ── Responsive ── */
   @media (max-width: 768px) {
     .page { padding: 2rem 1.5rem 4rem; }
@@ -375,17 +394,17 @@
   <script>
     // The CV lives at /cv but is deliberately unlinked from the site - nobody
     // stumbles onto it from here. The one exception: a browser that has already
-    // opened that link gets a quiet way back in, so the CV isn't a dead end.
-    // No href for it exists anywhere in this page's own markup; it's added to
-    // the DOM only when the flag from cv/index.html is present.
+    // opened that link gets a quiet way back in, as a standalone button below
+    // everything else, so the CV isn't a dead end. No href for it exists
+    // anywhere in this page's own markup; it's added to the DOM only when the
+    // flag from cv/index.html is present.
     try {
       if (localStorage.getItem('ns-cv-seen')) {
-        const nav = document.querySelector('.nav');
-        const socials = document.querySelector('.socials');
         const cvLink = document.createElement('a');
         cvLink.href = '/cv';
-        cvLink.textContent = 'CV';
-        nav.insertBefore(cvLink, socials);
+        cvLink.className = 'cv-return';
+        cvLink.textContent = 'View CV';
+        document.querySelector('.page').appendChild(cvLink);
       }
     } catch (e) {}
   </script>
